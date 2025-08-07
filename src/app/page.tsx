@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import { useChat } from '@ai-sdk/react';
-import { useState } from 'react';
-import { toast } from 'sonner';
+import { useChat } from "@ai-sdk/react";
+import { useState } from "react";
+import { toast } from "sonner";
 
 export default function Chat() {
-  const [input, setInput] = useState('');
+  const [input, setInput] = useState("");
   const { messages, sendMessage } = useChat({
     onError: err => toast.error(err.message),
   });
@@ -15,10 +15,10 @@ export default function Chat() {
       {messages.length > 0
         ? messages.map(m => (
             <div key={m.id} className="whitespace-pre-wrap">
-              {m.role === 'user' ? 'User: ' : 'AI: '}
+              {m.role === "user" ? "User: " : "AI: "}
               {m.parts
-                .map(part => (part.type === 'text' ? part.text : ''))
-                .join('')}
+                .map(part => (part.type === "text" ? part.text : ""))
+                .join("")}
             </div>
           ))
         : null}
@@ -27,7 +27,7 @@ export default function Chat() {
         onSubmit={e => {
           e.preventDefault();
           sendMessage({ text: input });
-          setInput('');
+          setInput("");
         }}
       >
         <input

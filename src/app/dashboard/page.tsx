@@ -1,24 +1,31 @@
+import MetricSelector from "@/components/metricSelector";
+
 export default function Page() {
   return (
     <div>
-      <div className="card container bg-base-300 shadow-sm mx-auto my-4">
-        <div className="card-body p-4">
-          <div className="flex items-center justify-center">
+      <div className="card container bg-base-100 shadow-sm mx-auto my-10 p-4">
+        <p className="text-2xl font-bold text-base-content">
+          Help us understand your needs
+        </p>
+        <div className="flex">
+          <div className="flex-1 py-4">
+            <MetricSelector />
+          </div>
+          <div className="flex items-center justify-center flex-2">
             <div className="flex-1 w-30"></div>
-
-            <div className="card bg-base-100 flex-5 p-4">
+            <div className="card bg-base-3s00 flex-5 p-4">
               <p className="card-text">Welcome to pick my llm.</p>
               <div className="flex items-center justify-center">
                 <div className="flex-1 card bg-base-200">
-
+                  <textarea
+                    className="textarea textarea-ghost"
+                    placeholder="How can we help you?"
+                  ></textarea>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <div className="flex items-center justify-center h-screen">
-        <h1 className="text-4xl font-bold">Welcome to Pick My LLM</h1>
       </div>
     </div>
   );

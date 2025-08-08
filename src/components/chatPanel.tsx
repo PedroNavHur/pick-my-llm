@@ -8,17 +8,7 @@ import { toast } from "sonner";
 const asText = (parts: { type: string; text?: string }[]) =>
   parts.map((p) => (p.type === "text" ? p.text : "")).join("");
 
-type ChatPanelProps = {
-  /** Default label for assistant messages if model name isn't available */
-  assistantLabel?: string; // e.g. "LLM" | "GPT-4o" | "Claude 3.5"
-  /** Optional extractor for a per-message model label when you add metadata */
-  getAssistantLabel?: (m: any) => string | undefined;
-};
-
-export default function ChatPanel({
-  assistantLabel = "LLM",
-  getAssistantLabel,
-}: ChatPanelProps) {
+export default function ChatPanel() {
   const [input, setInput] = useState("");
   const { messages, sendMessage } = useChat({
     onError: (e) => toast.error(e.message),
@@ -40,24 +30,13 @@ export default function ChatPanel({
     setInput("");
   }
 
-  // Helper to label assistant messages now, and per-model later
-  const labelFor = (m: any) =>
-    m.role === "user"
-      ? "You"
-      : getAssistantLabel?.(m) ??
-        // try common places you might stash the model name later:
-        m.model ??
-        m.meta?.model ??
-        m.provider ??
-        assistantLabel;
-
   return (
     <div className="card bg-base-300 shadow-md mx-auto w-full max-w-2xl h-[75vh] overflow-hidden">
       <div className="flex h-full flex-col">
         {/* Header */}
         <div className="p-4 border-b border-base-300 flex items-center justify-between">
           <h2 className="card-title text-base">Chat</h2>
-          <div className="badge badge-ghost">{assistantLabel}</div>
+          <div className="badge badge-ghost">LLM</div>
         </div>
 
         {/* Messages area */}
@@ -75,9 +54,9 @@ export default function ChatPanel({
                 const isUser = m.role === "user";
                 return (
                   <div key={m.id} className={`chat ${isUser ? "chat-end" : "chat-start"}`}>
-                    {/* Small header with speaker label */}
+                    {/* Speaker label (no metadata logic yet) */}
                     <div className="chat-header text-xs opacity-60 mb-1">
-                      {labelFor(m)}
+                      {isUser ? "You" : "LLM"}
                     </div>
 
                     {/* Bubble */}

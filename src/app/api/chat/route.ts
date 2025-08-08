@@ -1,7 +1,13 @@
 import { openai } from "@ai-sdk/openai";
+import {
+  createUIMessageStream,
+  createUIMessageStreamResponse,
+  streamText,
+  convertToModelMessages,
+} from "ai";
+import { RouterUIMessage } from "@/lib/types";
 import { Ratelimit } from "@upstash/ratelimit";
 import { kv } from "@vercel/kv";
-import { convertToModelMessages, streamText } from "ai";
 
 // Allow streaming responses up to 30 seconds
 export const maxDuration = 30;
@@ -10,6 +16,7 @@ const RATE_LIMIT_REQUESTS = 2;
 const RATE_LIMIT_SECONDS = "10s";
 
 export async function POST(req: Request) {
+  // Rate limiting Logic
   if (process.env.KV_REST_API_URL && process.env.KV_REST_API_TOKEN) {
     const ip = req.headers.get("x-forwarded-for");
     const ratelimit = new Ratelimit({
@@ -33,17 +40,52 @@ export async function POST(req: Request) {
     }
   }
 
-  // Extract the `messages` from the body of the request
+  // Message Streaming Logic Below
   const { messages } = await req.json();
 
-  const modelMessages = convertToModelMessages(messages);
+  const stream = createUIMessageStream<RouterUIMessage>({
+    execute: ({ writer }) => {
+      // 1. Send initial status (transient - won't be added to message history)
+      writer.write({
+        type: "data-notification",
+        data: { message: "Processing your request...", level: "info" },
+        transient: true, // This part won't be added to message history
+      });
 
-  // Call the language model
-  const result = streamText({
-    model: openai("gpt-5-nano"),
-    messages: modelMessages,
+      // 3. Send data parts with loading state
+      writer.write({
+        type: "data-weather",
+        id: "weather-1",
+        data: { city: "San Francisco", status: "loading" },
+      });
+
+      const result = streamText({
+        model: openai("gpt-5-nano"),
+        messages: convertToModelMessages(messages),
+        onFinish() {
+          // 4. Update the same data part (reconciliation)
+          writer.write({
+            type: "data-weather",
+            id: "weather-1", // Same ID = update existing part
+            data: {
+              city: "San Francisco",
+              weather: "sunny",
+              status: "success",
+            },
+          });
+
+          // 5. Send completion notification (transient)
+          writer.write({
+            type: "data-notification",
+            data: { message: "Request completed", level: "info" },
+            transient: true, // Won't be added to message history
+          });
+        },
+      });
+
+      writer.merge(result.toUIMessageStream());
+    },
   });
 
-  // Respond with the stream
-  return result.toUIMessageStreamResponse();
+  return createUIMessageStreamResponse({ stream });
 }

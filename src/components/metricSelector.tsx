@@ -5,16 +5,16 @@ import { useState } from "react";
 
 // outline icons
 import {
-    BoltIcon as BoltOutline,
-    LightBulbIcon as BulbOutline,
-    CurrencyDollarIcon as DollarOutline,
+  BoltIcon as BoltOutline,
+  LightBulbIcon as BulbOutline,
+  CurrencyDollarIcon as DollarOutline,
 } from "@heroicons/react/24/outline";
 
 // solid icons
 import {
-    BoltIcon as BoltSolid,
-    LightBulbIcon as BulbSolid,
-    CurrencyDollarIcon as DollarSolid,
+  BoltIcon as BoltSolid,
+  LightBulbIcon as BulbSolid,
+  CurrencyDollarIcon as DollarSolid,
 } from "@heroicons/react/24/solid";
 
 type HeroIcon = ComponentType<SVGProps<SVGSVGElement>>;
@@ -35,7 +35,7 @@ export default function MetricSelector() {
 
   return (
     <div className="flex flex-col justify-center space-y-4">
-      <p className="text-md">What do you want to optimize?</p>
+      <p className="text-md px-2 font-bold">What do you prioritize?</p>
       <div className="flex space-x-4">
         {cards.map((c, i) => {
           const isActive = i === selected;

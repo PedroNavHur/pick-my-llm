@@ -17,8 +17,8 @@ export default function ChatPanel() {
   });
 
   // Zustand: read weights, setter for top models
-  const weights = useRouterStore((s) => s.weights);
-  const setTopModels = useRouterStore((s) => s.setTopModels);
+  const weights = useRouterStore(s => s.weights);
+  const setTopModels = useRouterStore(s => s.setTopModels);
 
   const listRef = useRef<HTMLDivElement>(null);
 
@@ -48,7 +48,6 @@ export default function ChatPanel() {
       console.error("Router error:", err);
       toast.error("Failed to score models for this prompt.");
     }
-
   }
 
   return (
@@ -84,11 +83,7 @@ export default function ChatPanel() {
                     </div>
 
                     {/* Bubble */}
-                    <div
-                      className={`chat-bubble max-w-[90%] whitespace-pre-wrap ${
-                        isUser ? "chat-bubble-primary" : "chat-bubble-secondary"
-                      }`}
-                    >
+                    <div className="chat-bubble chat-bubble-neutral text-sm max-w-[90%] whitespace-pre-wrap">
                       {asText(m.parts)}
                     </div>
                   </div>

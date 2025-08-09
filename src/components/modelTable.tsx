@@ -5,7 +5,11 @@ import { useRouterStore } from "@/store/router";
 import { useMemo } from "react";
 import type { IconType } from "react-icons";
 import { RiAnthropicFill } from "react-icons/ri";
-import { SiGoogle, SiOpenai, SiX /* SiMistral not in SI yet */ } from "react-icons/si";
+import {
+  SiGoogle,
+  SiOpenai,
+  SiX /* SiMistral not in SI yet */,
+} from "react-icons/si";
 
 function normalizeProvider(p: string) {
   return p.toLowerCase().replace(/\s+/g, "");
@@ -16,7 +20,6 @@ const PROVIDER_ICONS: Partial<Record<string, IconType>> = {
   google: SiGoogle,
   anthropic: RiAnthropicFill,
   xai: SiX,
-  // mistral: SiMistral, // not available in simple-icons; falls back to initial
 };
 
 function providerColorClass(provider: string): string {
@@ -32,8 +35,14 @@ function providerColorClass(provider: string): string {
 function ProviderBadge({ provider }: { provider: string }) {
   const Icon = PROVIDER_ICONS[normalizeProvider(provider)];
   return (
-    <div className={`size-9 rounded-full grid place-items-center text-white ${providerColorClass(provider)}`}>
-      {Icon ? <Icon className="size-5" /> : <span className="text-xs font-bold">{provider[0]}</span>}
+    <div
+      className={`size-9 rounded-full grid place-items-center text-white ${providerColorClass(provider)}`}
+    >
+      {Icon ? (
+        <Icon className="size-5" />
+      ) : (
+        <span className="text-xs font-bold">{provider[0]}</span>
+      )}
     </div>
   );
 }
@@ -45,7 +54,11 @@ function to10(x: number): string {
 }
 
 function dollarsPerMillion(n: number): string {
-  return `$${n} / 1M`;
+  return `$${n}`;
+}
+
+function formatTPS(n: number): string {
+  return n.toFixed(1); // one decimal, e.g. "347.9"
 }
 
 export default function ModelTable() {
@@ -57,7 +70,7 @@ export default function ModelTable() {
 
   return (
     <div className="overflow-x-auto">
-      <table className="table w-full">
+      <table className="table table-xs w-full">
         <thead>
           <tr>
             <th>Model</th>
@@ -71,7 +84,10 @@ export default function ModelTable() {
         <tbody>
           {rows.length === 0 ? (
             <tr>
-              <td colSpan={5} className="text-center text-sm text-base-content/60">
+              <td
+                colSpan={5}
+                className="text-center text-sm text-base-content/60"
+              >
                 No models yet. Ask something in the chat to see recommendations.
               </td>
             </tr>
@@ -89,20 +105,26 @@ export default function ModelTable() {
                     <div className="flex items-center gap-3">
                       <ProviderBadge provider={m.provider} />
                       <div className="flex flex-col">
-                        <span className="font-medium text-sm">{m.name}</span>
-                        <span className="text-xs text-base-content/60">{m.provider}</span>
+                        <span className="font-medium text-xs">{m.name}</span>
+                        <span className="text-xs text-base-content/60">
+                          {m.provider}
+                        </span>
                       </div>
                     </div>
                   </td>
 
                   {/* Intelligence (0–10 from normalized breakdown) */}
                   <td>
-                    <span className="badge badge-ghost">{to10(m.breakdown.intel)}</span>
+                    <span className="badge badge-ghost">
+                      {to10(m.breakdown.intel)}
+                    </span>
                   </td>
 
                   {/* Speed (0–10 from normalized breakdown) */}
                   <td>
-                    <span className="badge badge-ghost">{to10(m.breakdown.speed)}</span>
+                    <span className="badge badge-ghost">
+                      {formatTPS(m.median_output_tokens_per_second)}
+                    </span>
                   </td>
 
                   {/* Prices */}

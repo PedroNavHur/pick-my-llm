@@ -4,7 +4,7 @@ import sys
 from argparse import ArgumentParser
 from typing import Any, Dict, Iterable, List
 
-# Fields we’ll output (keys in the resulting JSON objects)
+# Fields we’ll output (and validate)
 OUT_KEYS = [
     "name",
     "slug",
@@ -48,11 +48,23 @@ def iter_source(doc: Dict[str, Any]) -> Iterable[Dict[str, Any]]:
             if isinstance(itm, dict):
                 yield itm
     elif isinstance(doc, dict) and "name" in doc:
-        # single-model object
         yield doc
 
+def valid_row(row: Dict[str, Any]) -> bool:
+    # Keep only rows where every requested field exists and is neither None nor 0
+    for k in OUT_KEYS:
+        if k not in row:
+            return False
+        v = row[k]
+        if v is None or v == 0:
+            return False
+        # (optional) also disallow empty strings:
+        if isinstance(v, str) and v.strip() == "":
+            return False
+    return True
+
 def main():
-    ap = ArgumentParser(description="Extract model fields from JSON → JSON")
+    ap = ArgumentParser(description="Extract model fields from JSON → JSON (drop rows with missing/null/0 fields)")
     ap.add_argument("infile", help="Input JSON (or '-' for stdin)")
     ap.add_argument("-o", "--out", help="Output JSON file (default: stdout)")
     args = ap.parse_args()
@@ -60,13 +72,14 @@ def main():
     raw = sys.stdin.read() if args.infile == "-" else open(args.infile, "r", encoding="utf-8").read()
     doc = json.loads(raw)
 
-    out_rows: List[Dict[str, Any]] = [extract_one(m) for m in iter_source(doc)]
+    extracted: List[Dict[str, Any]] = [extract_one(m) for m in iter_source(doc)]
+    out_rows: List[Dict[str, Any]] = [r for r in extracted if valid_row(r)]
 
     outfh = sys.stdout if not args.out else open(args.out, "w", encoding="utf-8")
     try:
         json.dump(out_rows, outfh, indent=2, ensure_ascii=False)
         if outfh is sys.stdout:
-            print()  # newline
+            print()
     finally:
         if outfh is not sys.stdout:
             outfh.close()

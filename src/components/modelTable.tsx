@@ -1,99 +1,65 @@
 "use client";
 
+import type { ScoredModel } from "@/store/router";
+import { useRouterStore } from "@/store/router";
+import { useMemo } from "react";
 import type { IconType } from "react-icons";
 import { RiAnthropicFill } from "react-icons/ri";
-import { SiGoogle, SiOpenai, SiX } from "react-icons/si"; // known to exist
-// (Anthropic, Mistral, xAI may not be in Simple Icons yet—fallback to initials.)
-
-type ModelRow = {
-  provider: string;
-  providerColor: string; // e.g. "bg-primary"
-  model: string;
-  intelligence: number; // 0–10
-  speed: number; // 0–10
-  inputPrice: string;
-  outputPrice: string;
-};
-
-// Tiny mapping (extend as more logos land in Simple Icons)
-const PROVIDER_ICONS: Partial<Record<string, IconType>> = {
-  openai: SiOpenai,
-  google: SiGoogle,
-  anthropic: RiAnthropicFill,
-  xai: SiX,
-};
-
-const rows: ModelRow[] = [
-  {
-    provider: "OpenAI",
-    providerColor: "bg-primary-content",
-    model: "GPT-4o",
-    intelligence: 9,
-    speed: 8,
-    inputPrice: "$0.15",
-    outputPrice: "$0.20",
-  },
-  {
-    provider: "Anthropic",
-    providerColor: "bg-secondary-content",
-    model: "Claude 3.5 Sonnet",
-    intelligence: 9,
-    speed: 7,
-    inputPrice: "$3 / 1M",
-    outputPrice: "$15 / 1M",
-  },
-  {
-    provider: "Google",
-    providerColor: "bg-accent-content",
-    model: "Gemini 1.5 Pro",
-    intelligence: 8,
-    speed: 8,
-    inputPrice: "$4 / 1M",
-    outputPrice: "$12 / 1M",
-  },
-  {
-    provider: "xAI",
-    providerColor: "bg-info-content",
-    model: "Grok-2",
-    intelligence: 8,
-    speed: 9,
-    inputPrice: "$2 / 1M",
-    outputPrice: "$10 / 1M",
-  },
-];
+import { SiGoogle, SiOpenai, SiX /* SiMistral not in SI yet */ } from "react-icons/si";
 
 function normalizeProvider(p: string) {
   return p.toLowerCase().replace(/\s+/g, "");
 }
 
-function ProviderBadge({
-  provider,
-  colorClass,
-}: {
-  provider: string;
-  colorClass: string;
-}) {
+const PROVIDER_ICONS: Partial<Record<string, IconType>> = {
+  openai: SiOpenai,
+  google: SiGoogle,
+  anthropic: RiAnthropicFill,
+  xai: SiX,
+  // mistral: SiMistral, // not available in simple-icons; falls back to initial
+};
+
+function providerColorClass(provider: string): string {
+  const p = normalizeProvider(provider);
+  if (p === "openai") return "bg-primary";
+  if (p === "anthropic") return "bg-secondary";
+  if (p === "google") return "bg-accent";
+  if (p === "xai") return "bg-info";
+  if (p === "mistral") return "bg-warning";
+  return "bg-neutral";
+}
+
+function ProviderBadge({ provider }: { provider: string }) {
   const Icon = PROVIDER_ICONS[normalizeProvider(provider)];
   return (
-    <div
-      className={`size-9 rounded-full grid place-items-center text-white ${colorClass}`}
-    >
-      {Icon ? (
-        <Icon className="size-6" />
-      ) : (
-        <span className="text-xs font-bold">{provider[0]}</span>
-      )}
+    <div className={`size-9 rounded-full grid place-items-center text-white ${providerColorClass(provider)}`}>
+      {Icon ? <Icon className="size-5" /> : <span className="text-xs font-bold">{provider[0]}</span>}
     </div>
   );
 }
 
+function to10(x: number): string {
+  // convert normalized [0..1] → 0..10 with 1 decimal
+  const v = Math.max(0, Math.min(1, x)) * 10;
+  return v.toFixed(1);
+}
+
+function dollarsPerMillion(n: number): string {
+  return `$${n} / 1M`;
+}
+
 export default function ModelTable() {
+  const topModels = useRouterStore(s => s.topModels);
+  const selectedModel = useRouterStore(s => s.selectedModel);
+  const setSelectedModel = useRouterStore(s => s.setSelectedModel);
+
+  const rows = useMemo(() => topModels ?? [], [topModels]);
+
   return (
     <div className="overflow-x-auto">
       <table className="table w-full">
         <thead>
           <tr>
-            <th className="w-[72px]">Provider</th>
             <th>Model</th>
             <th>Intelligence</th>
             <th>Speed</th>
@@ -101,41 +67,59 @@ export default function ModelTable() {
             <th>Output</th>
           </tr>
         </thead>
+
         <tbody>
-          {rows.map(r => (
-            <tr key={r.provider + r.model}>
-              <td>
-                <div className="flex items-center gap-3">
-                  <ProviderBadge
-                    provider={r.provider}
-                    colorClass={r.providerColor}
-                  />
-                </div>
-              </td>
-
-              <td>
-                <div className="flex flex-col">
-                  <span className="font-medium text-xs">{r.model}</span>
-                  <span className="text-xs text-base-content/60">
-                    {r.provider}
-                  </span>
-                </div>
-              </td>
-
-              <td>
-                <span className="badge badge-ghost">{r.intelligence}</span>
-              </td>
-              <td>
-                <span className="badge badge-ghost">{r.speed}</span>
-              </td>
-              <td>
-                <span className="badge badge-ghost">{r.inputPrice}</span>
-              </td>
-              <td>
-                <span className="badge badge-ghost">{r.outputPrice}</span>
+          {rows.length === 0 ? (
+            <tr>
+              <td colSpan={5} className="text-center text-sm text-base-content/60">
+                No models yet. Ask something in the chat to see recommendations.
               </td>
             </tr>
-          ))}
+          ) : (
+            rows.map((m: ScoredModel) => {
+              const isActive = selectedModel === m.slug;
+              return (
+                <tr
+                  key={m.slug}
+                  className={`${isActive ? "bg-base-200" : ""} cursor-pointer`}
+                  onClick={() => setSelectedModel(m.slug)}
+                >
+                  {/* Model + Provider */}
+                  <td>
+                    <div className="flex items-center gap-3">
+                      <ProviderBadge provider={m.provider} />
+                      <div className="flex flex-col">
+                        <span className="font-medium text-sm">{m.name}</span>
+                        <span className="text-xs text-base-content/60">{m.provider}</span>
+                      </div>
+                    </div>
+                  </td>
+
+                  {/* Intelligence (0–10 from normalized breakdown) */}
+                  <td>
+                    <span className="badge badge-ghost">{to10(m.breakdown.intel)}</span>
+                  </td>
+
+                  {/* Speed (0–10 from normalized breakdown) */}
+                  <td>
+                    <span className="badge badge-ghost">{to10(m.breakdown.speed)}</span>
+                  </td>
+
+                  {/* Prices */}
+                  <td>
+                    <span className="badge badge-ghost">
+                      {dollarsPerMillion(m.price_input_tokens)}
+                    </span>
+                  </td>
+                  <td>
+                    <span className="badge badge-ghost">
+                      {dollarsPerMillion(m.price_output_tokens)}
+                    </span>
+                  </td>
+                </tr>
+              );
+            })
+          )}
         </tbody>
       </table>
     </div>

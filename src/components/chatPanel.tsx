@@ -4,6 +4,8 @@ import { useChat } from "@ai-sdk/react";
 import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 
+import { routeModel } from "@/lib/router";
+import { useRouterStore } from "@/store/router";
 // flatten AI SDK UIMessage parts → text
 const asText = (parts: { type: string; text?: string }[]) =>
   parts.map(p => (p.type === "text" ? p.text : "")).join("");
@@ -13,6 +15,10 @@ export default function ChatPanel() {
   const { messages, sendMessage } = useChat({
     onError: e => toast.error(e.message),
   });
+
+  // Zustand: read weights, setter for top models
+  const weights = useRouterStore((s) => s.weights);
+  const setTopModels = useRouterStore((s) => s.setTopModels);
 
   const listRef = useRef<HTMLDivElement>(null);
 
@@ -27,7 +33,22 @@ export default function ChatPanel() {
     const prompt = input.trim();
     if (!prompt) return;
     await sendMessage({ text: prompt });
+
     setInput("");
+    // 2) call the router with the prompt and current weights
+    try {
+      // Preferred: rankModels returns ScoredModel[] sorted desc.
+      const ranked = routeModel(prompt, weights);
+      setTopModels(ranked.alternatives);
+
+      // If you don’t have rankModels, you can do:
+      // const { primary, alternatives } = routeModel(prompt, weights);
+      // setTopModels([primary, ...alternatives].slice(0, 5));
+    } catch (err) {
+      console.error("Router error:", err);
+      toast.error("Failed to score models for this prompt.");
+    }
+
   }
 
   return (

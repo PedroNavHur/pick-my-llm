@@ -13,5 +13,10 @@ export type RouterUIMessage = UIMessage<
       message: string;
       level: "info" | "warning" | "error";
     };
+    llmmodel: {
+      name: string;
+      provider: string;
+      status: "loading" | "success";
+    };
   } // data parts type
 >;

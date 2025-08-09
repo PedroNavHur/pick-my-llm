@@ -6,12 +6,12 @@ import { toast } from "sonner";
 
 // flatten AI SDK UIMessage parts → text
 const asText = (parts: { type: string; text?: string }[]) =>
-  parts.map((p) => (p.type === "text" ? p.text : "")).join("");
+  parts.map(p => (p.type === "text" ? p.text : "")).join("");
 
 export default function ChatPanel() {
   const [input, setInput] = useState("");
   const { messages, sendMessage } = useChat({
-    onError: (e) => toast.error(e.message),
+    onError: e => toast.error(e.message),
   });
 
   const listRef = useRef<HTMLDivElement>(null);
@@ -50,10 +50,13 @@ export default function ChatPanel() {
             </div>
           ) : (
             <div className="space-y-3 pb-3">
-              {messages.map((m) => {
+              {messages.map(m => {
                 const isUser = m.role === "user";
                 return (
-                  <div key={m.id} className={`chat ${isUser ? "chat-end" : "chat-start"}`}>
+                  <div
+                    key={m.id}
+                    className={`chat ${isUser ? "chat-end" : "chat-start"}`}
+                  >
                     {/* Speaker label (no metadata logic yet) */}
                     <div className="chat-header text-xs opacity-60 mb-1">
                       {isUser ? "You" : "LLM"}
@@ -79,8 +82,8 @@ export default function ChatPanel() {
           <form onSubmit={onSubmit} className="join w-full">
             <textarea
               value={input}
-              onChange={(e) => setInput(e.target.value)}
-              onKeyDown={(e) => {
+              onChange={e => setInput(e.target.value)}
+              onKeyDown={e => {
                 if (e.key === "Enter" && !e.shiftKey) {
                   e.preventDefault();
                   onSubmit(e as unknown as React.FormEvent);
@@ -89,7 +92,11 @@ export default function ChatPanel() {
               placeholder="Type your prompt… (Shift+Enter for newline)"
               className="textarea textarea-bordered join-item w-full min-h-[48px] max-h-40"
             />
-            <button type="submit" className="btn btn-primary join-item" disabled={!input.trim()}>
+            <button
+              type="submit"
+              className="btn btn-primary join-item"
+              disabled={!input.trim()}
+            >
               Send
             </button>
           </form>

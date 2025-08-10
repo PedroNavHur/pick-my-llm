@@ -8,7 +8,7 @@
     "artificial_analysis_math_index": 45.3,
     "price_input_tokens": 0.15,
     "price_output_tokens": 0.6,
-    "median_output_tokens_per_second": 64.924
+    "median_output_tokens_per_second": 64.757
   },
   {
     "name": "GPT-5 (low)",
@@ -19,7 +19,7 @@
     "artificial_analysis_math_index": 90.9,
     "price_input_tokens": 1.25,
     "price_output_tokens": 10,
-    "median_output_tokens_per_second": 146.125
+    "median_output_tokens_per_second": 163.415
   },
   {
     "name": "o3",
@@ -30,7 +30,7 @@
     "artificial_analysis_math_index": 94.8,
     "price_input_tokens": 2,
     "price_output_tokens": 8,
-    "median_output_tokens_per_second": 149.569
+    "median_output_tokens_per_second": 155.439
   },
   {
     "name": "o3-mini",
@@ -41,7 +41,7 @@
     "artificial_analysis_math_index": 87.2,
     "price_input_tokens": 1.1,
     "price_output_tokens": 4.4,
-    "median_output_tokens_per_second": 139.907
+    "median_output_tokens_per_second": 188.344
   },
   {
     "name": "o4-mini (high)",
@@ -52,7 +52,7 @@
     "artificial_analysis_math_index": 96.4,
     "price_input_tokens": 1.1,
     "price_output_tokens": 4.4,
-    "median_output_tokens_per_second": 121.313
+    "median_output_tokens_per_second": 129.092
   },
   {
     "name": "o3-mini (high)",
@@ -63,7 +63,7 @@
     "artificial_analysis_math_index": 92.2,
     "price_input_tokens": 1.1,
     "price_output_tokens": 4.4,
-    "median_output_tokens_per_second": 142.111
+    "median_output_tokens_per_second": 171.58
   },
   {
     "name": "GPT-4.1",
@@ -74,7 +74,7 @@
     "artificial_analysis_math_index": 67.5,
     "price_input_tokens": 2,
     "price_output_tokens": 8,
-    "median_output_tokens_per_second": 122.232
+    "median_output_tokens_per_second": 131.653
   },
   {
     "name": "GPT-4.1 nano",
@@ -85,7 +85,7 @@
     "artificial_analysis_math_index": 54.2,
     "price_input_tokens": 0.1,
     "price_output_tokens": 0.4,
-    "median_output_tokens_per_second": 105.508
+    "median_output_tokens_per_second": 128.663
   },
   {
     "name": "GPT-4.1 mini",
@@ -96,7 +96,7 @@
     "artificial_analysis_math_index": 67.8,
     "price_input_tokens": 0.4,
     "price_output_tokens": 1.6,
-    "median_output_tokens_per_second": 79.969
+    "median_output_tokens_per_second": 77.871
   },
   {
     "name": "GPT-5 (medium)",
@@ -107,7 +107,7 @@
     "artificial_analysis_math_index": 95.4,
     "price_input_tokens": 1.25,
     "price_output_tokens": 10,
-    "median_output_tokens_per_second": 190.353
+    "median_output_tokens_per_second": 181.401
   },
   {
     "name": "GPT-5 (minimal)",
@@ -118,7 +118,7 @@
     "artificial_analysis_math_index": 61.4,
     "price_input_tokens": 1.25,
     "price_output_tokens": 10,
-    "median_output_tokens_per_second": 97.264
+    "median_output_tokens_per_second": 112.445
   },
   {
     "name": "GPT-5 (high)",
@@ -129,7 +129,7 @@
     "artificial_analysis_math_index": 97.5,
     "price_input_tokens": 1.25,
     "price_output_tokens": 10,
-    "median_output_tokens_per_second": 126.047
+    "median_output_tokens_per_second": 126.162
   },
   {
     "name": "Llama 3.3 Instruct 70B",
@@ -140,7 +140,7 @@
     "artificial_analysis_math_index": 53.6,
     "price_input_tokens": 0.58,
     "price_output_tokens": 0.64,
-    "median_output_tokens_per_second": 109.146
+    "median_output_tokens_per_second": 112.865
   },
   {
     "name": "Llama 3.1 Instruct 405B",
@@ -151,7 +151,7 @@
     "artificial_analysis_math_index": 45.8,
     "price_input_tokens": 3.25,
     "price_output_tokens": 3.25,
-    "median_output_tokens_per_second": 34.955
+    "median_output_tokens_per_second": 35.103
   },
   {
     "name": "Llama 3.2 Instruct 90B (Vision)",
@@ -162,7 +162,7 @@
     "artificial_analysis_math_index": 34,
     "price_input_tokens": 0.535,
     "price_output_tokens": 0.56,
-    "median_output_tokens_per_second": 33.644
+    "median_output_tokens_per_second": 34.18
   },
   {
     "name": "Llama 4 Maverick",
@@ -173,7 +173,7 @@
     "artificial_analysis_math_index": 63.9,
     "price_input_tokens": 0.23,
     "price_output_tokens": 0.85,
-    "median_output_tokens_per_second": 166.298
+    "median_output_tokens_per_second": 167.161
   },
   {
     "name": "Llama 4 Scout",
@@ -184,7 +184,7 @@
     "artificial_analysis_math_index": 56.4,
     "price_input_tokens": 0.11,
     "price_output_tokens": 0.5,
-    "median_output_tokens_per_second": 131.006
+    "median_output_tokens_per_second": 132.004
   },
   {
     "name": "Gemini 2.5 Flash",
@@ -195,7 +195,7 @@
     "artificial_analysis_math_index": 71.6,
     "price_input_tokens": 0.3,
     "price_output_tokens": 2.5,
-    "median_output_tokens_per_second": 254.052
+    "median_output_tokens_per_second": 265.734
   },
   {
     "name": "Gemini 2.5 Pro",
@@ -206,7 +206,7 @@
     "artificial_analysis_math_index": 92.7,
     "price_input_tokens": 1.25,
     "price_output_tokens": 10,
-    "median_output_tokens_per_second": 143.001
+    "median_output_tokens_per_second": 144.673
   },
   {
     "name": "Gemini 2.5 Flash-Lite",
@@ -217,7 +217,7 @@
     "artificial_analysis_math_index": 71.3,
     "price_input_tokens": 0.1,
     "price_output_tokens": 0.4,
-    "median_output_tokens_per_second": 347.935
+    "median_output_tokens_per_second": 323.239
   },
   {
     "name": "Gemini 2.5 Flash-Lite (Reasoning)",
@@ -228,7 +228,7 @@
     "artificial_analysis_math_index": 83.6,
     "price_input_tokens": 0.1,
     "price_output_tokens": 0.4,
-    "median_output_tokens_per_second": 463.165
+    "median_output_tokens_per_second": 436.593
   },
   {
     "name": "Gemini 2.5 Flash (Reasoning)",
@@ -239,7 +239,7 @@
     "artificial_analysis_math_index": 90.2,
     "price_input_tokens": 0.3,
     "price_output_tokens": 2.5,
-    "median_output_tokens_per_second": 293.176
+    "median_output_tokens_per_second": 306.463
   },
   {
     "name": "Gemma 3n E4B Instruct",
@@ -250,7 +250,7 @@
     "artificial_analysis_math_index": 45.4,
     "price_input_tokens": 0.02,
     "price_output_tokens": 0.04,
-    "median_output_tokens_per_second": 82.784
+    "median_output_tokens_per_second": 86.297
   },
   {
     "name": "Claude 4 Opus (Extended Thinking)",
@@ -261,7 +261,7 @@
     "artificial_analysis_math_index": 86.9,
     "price_input_tokens": 15,
     "price_output_tokens": 75,
-    "median_output_tokens_per_second": 39.502
+    "median_output_tokens_per_second": 26.272
   },
   {
     "name": "Claude 4 Sonnet (Extended Thinking)",
@@ -272,7 +272,7 @@
     "artificial_analysis_math_index": 88.2,
     "price_input_tokens": 3,
     "price_output_tokens": 15,
-    "median_output_tokens_per_second": 66.836
+    "median_output_tokens_per_second": 63.274
   },
   {
     "name": "Claude 4 Opus",
@@ -283,7 +283,7 @@
     "artificial_analysis_math_index": 75.2,
     "price_input_tokens": 15,
     "price_output_tokens": 75,
-    "median_output_tokens_per_second": 38.509
+    "median_output_tokens_per_second": 25.541
   },
   {
     "name": "Claude 4 Sonnet",
@@ -294,7 +294,7 @@
     "artificial_analysis_math_index": 67,
     "price_input_tokens": 3,
     "price_output_tokens": 15,
-    "median_output_tokens_per_second": 100.275
+    "median_output_tokens_per_second": 97.678
   },
   {
     "name": "Ministral 8B",
@@ -305,7 +305,7 @@
     "artificial_analysis_math_index": 30.4,
     "price_input_tokens": 0.1,
     "price_output_tokens": 0.1,
-    "median_output_tokens_per_second": 184.589
+    "median_output_tokens_per_second": 185.757
   },
   {
     "name": "Ministral 3B",
@@ -316,7 +316,7 @@
     "artificial_analysis_math_index": 26.8,
     "price_input_tokens": 0.04,
     "price_output_tokens": 0.04,
-    "median_output_tokens_per_second": 288.168
+    "median_output_tokens_per_second": 286.801
   },
   {
     "name": "Mistral Medium 3",
@@ -327,7 +327,7 @@
     "artificial_analysis_math_index": 67.3,
     "price_input_tokens": 0.4,
     "price_output_tokens": 2,
-    "median_output_tokens_per_second": 58.775
+    "median_output_tokens_per_second": 60.499
   },
   {
     "name": "Mistral Small 3.2",
@@ -338,7 +338,7 @@
     "artificial_analysis_math_index": 60.3,
     "price_input_tokens": 0.1,
     "price_output_tokens": 0.3,
-    "median_output_tokens_per_second": 170.345
+    "median_output_tokens_per_second": 187.092
   },
   {
     "name": "Magistral Small",
@@ -349,7 +349,7 @@
     "artificial_analysis_math_index": 83.8,
     "price_input_tokens": 0.5,
     "price_output_tokens": 1.5,
-    "median_output_tokens_per_second": 207.425
+    "median_output_tokens_per_second": 201.818
   },
   {
     "name": "Devstral Small (Jul '25)",
@@ -360,7 +360,7 @@
     "artificial_analysis_math_index": 31.9,
     "price_input_tokens": 0.1,
     "price_output_tokens": 0.3,
-    "median_output_tokens_per_second": 156.806
+    "median_output_tokens_per_second": 158.038
   },
   {
     "name": "Devstral Medium",
@@ -371,7 +371,7 @@
     "artificial_analysis_math_index": 38.7,
     "price_input_tokens": 0.4,
     "price_output_tokens": 2,
-    "median_output_tokens_per_second": 104.554
+    "median_output_tokens_per_second": 114.316
   },
   {
     "name": "Magistral Medium",
@@ -382,7 +382,7 @@
     "artificial_analysis_math_index": 80.9,
     "price_input_tokens": 2,
     "price_output_tokens": 5,
-    "median_output_tokens_per_second": 139.513
+    "median_output_tokens_per_second": 149.929
   },
   {
     "name": "Codestral (Jan '25)",
@@ -393,7 +393,7 @@
     "artificial_analysis_math_index": 32.5,
     "price_input_tokens": 0.3,
     "price_output_tokens": 0.9,
-    "median_output_tokens_per_second": 182.138
+    "median_output_tokens_per_second": 180.933
   },
   {
     "name": "DeepSeek R1 0528 Qwen3 8B",
@@ -404,7 +404,7 @@
     "artificial_analysis_math_index": 79.1,
     "price_input_tokens": 0.055,
     "price_output_tokens": 0.095,
-    "median_output_tokens_per_second": 92.309
+    "median_output_tokens_per_second": 92.444
   },
   {
     "name": "DeepSeek R1 0528 (May '25)",
@@ -415,7 +415,7 @@
     "artificial_analysis_math_index": 93.8,
     "price_input_tokens": 0.55,
     "price_output_tokens": 2.19,
-    "median_output_tokens_per_second": 24.01
+    "median_output_tokens_per_second": 23.047
   },
   {
     "name": "Grok 3",
@@ -426,7 +426,7 @@
     "artificial_analysis_math_index": 60,
     "price_input_tokens": 3,
     "price_output_tokens": 15,
-    "median_output_tokens_per_second": 56.116
+    "median_output_tokens_per_second": 57.923
   },
   {
     "name": "Grok 3 mini Reasoning (high)",
@@ -437,7 +437,7 @@
     "artificial_analysis_math_index": 96.3,
     "price_input_tokens": 0.3,
     "price_output_tokens": 0.5,
-    "median_output_tokens_per_second": 208.583
+    "median_output_tokens_per_second": 209.052
   },
   {
     "name": "Grok 4",
@@ -448,7 +448,7 @@
     "artificial_analysis_math_index": 96.7,
     "price_input_tokens": 3,
     "price_output_tokens": 15,
-    "median_output_tokens_per_second": 51.577
+    "median_output_tokens_per_second": 63.711
   },
   {
     "name": "Nova Premier",
@@ -459,7 +459,7 @@
     "artificial_analysis_math_index": 50.5,
     "price_input_tokens": 2.5,
     "price_output_tokens": 12.5,
-    "median_output_tokens_per_second": 88.35
+    "median_output_tokens_per_second": 86.749
   },
   {
     "name": "Phi-4",
@@ -470,7 +470,7 @@
     "artificial_analysis_math_index": 47.7,
     "price_input_tokens": 0.125,
     "price_output_tokens": 0.5,
-    "median_output_tokens_per_second": 39.622
+    "median_output_tokens_per_second": 43.254
   },
   {
     "name": "Solar Pro 2",
@@ -481,7 +481,7 @@
     "artificial_analysis_math_index": 64.8,
     "price_input_tokens": 0.5,
     "price_output_tokens": 0.5,
-    "median_output_tokens_per_second": 128.666
+    "median_output_tokens_per_second": 131.478
   },
   {
     "name": "Solar Pro 2 (Reasoning)",
@@ -492,7 +492,7 @@
     "artificial_analysis_math_index": 82.8,
     "price_input_tokens": 0.5,
     "price_output_tokens": 0.5,
-    "median_output_tokens_per_second": 117.211
+    "median_output_tokens_per_second": 119.845
   },
   {
     "name": "MiniMax-Text-01",
@@ -503,7 +503,7 @@
     "artificial_analysis_math_index": 44.2,
     "price_input_tokens": 0.2,
     "price_output_tokens": 1.1,
-    "median_output_tokens_per_second": 31.78
+    "median_output_tokens_per_second": 31.892
   },
   {
     "name": "Llama 3.1 Nemotron Instruct 70B",
@@ -514,7 +514,7 @@
     "artificial_analysis_math_index": 49,
     "price_input_tokens": 0.12,
     "price_output_tokens": 0.3,
-    "median_output_tokens_per_second": 40.82
+    "median_output_tokens_per_second": 40.589
   },
   {
     "name": "Llama 3.1 Nemotron Ultra 253B v1 (Reasoning)",
@@ -525,7 +525,7 @@
     "artificial_analysis_math_index": 84.9,
     "price_input_tokens": 0.6,
     "price_output_tokens": 1.8,
-    "median_output_tokens_per_second": 40.995
+    "median_output_tokens_per_second": 40.513
   },
   {
     "name": "Kimi K2",
@@ -536,7 +536,7 @@
     "artificial_analysis_math_index": 83.2,
     "price_input_tokens": 0.6,
     "price_output_tokens": 2.5,
-    "median_output_tokens_per_second": 46.605
+    "median_output_tokens_per_second": 46.407
   },
   {
     "name": "Granite 3.3 Instruct 8B",
@@ -547,7 +547,7 @@
     "artificial_analysis_math_index": 35.6,
     "price_input_tokens": 0.03,
     "price_output_tokens": 0.25,
-    "median_output_tokens_per_second": 121.676
+    "median_output_tokens_per_second": 127.059
   },
   {
     "name": "Reka Flash 3",
@@ -558,7 +558,7 @@
     "artificial_analysis_math_index": 70.1,
     "price_input_tokens": 0.2,
     "price_output_tokens": 0.8,
-    "median_output_tokens_per_second": 55.681
+    "median_output_tokens_per_second": 55.914
   },
   {
     "name": "EXAONE 4.0 32B",
@@ -569,7 +569,7 @@
     "artificial_analysis_math_index": 70.5,
     "price_input_tokens": 0.6,
     "price_output_tokens": 1,
-    "median_output_tokens_per_second": 88.987
+    "median_output_tokens_per_second": 92.269
   },
   {
     "name": "EXAONE 4.0 32B (Reasoning)",
@@ -580,7 +580,7 @@
     "artificial_analysis_math_index": 91,
     "price_input_tokens": 0.6,
     "price_output_tokens": 1,
-    "median_output_tokens_per_second": 96.435
+    "median_output_tokens_per_second": 94.928
   },
   {
     "name": "GLM-4.5",
@@ -591,7 +591,7 @@
     "artificial_analysis_math_index": 92.6,
     "price_input_tokens": 0.57,
     "price_output_tokens": 2.145,
-    "median_output_tokens_per_second": 62.731
+    "median_output_tokens_per_second": 59.294
   },
   {
     "name": "GLM-4.5-Air",
@@ -602,7 +602,7 @@
     "artificial_analysis_math_index": 81.9,
     "price_input_tokens": 0.2,
     "price_output_tokens": 1.1,
-    "median_output_tokens_per_second": 175.731
+    "median_output_tokens_per_second": 182.872
   },
   {
     "name": "Aya Expanse 32B",
@@ -613,7 +613,7 @@
     "artificial_analysis_math_index": 22.4,
     "price_input_tokens": 0.5,
     "price_output_tokens": 1.5,
-    "median_output_tokens_per_second": 120.292
+    "median_output_tokens_per_second": 119.526
   },
   {
     "name": "Aya Expanse 8B",
@@ -624,7 +624,7 @@
     "artificial_analysis_math_index": 16,
     "price_input_tokens": 0.5,
     "price_output_tokens": 1.5,
-    "median_output_tokens_per_second": 166.537
+    "median_output_tokens_per_second": 164.808
   },
   {
     "name": "Command A",
@@ -635,7 +635,7 @@
     "artificial_analysis_math_index": 45.8,
     "price_input_tokens": 2.5,
     "price_output_tokens": 10,
-    "median_output_tokens_per_second": 157.294
+    "median_output_tokens_per_second": 155.541
   },
   {
     "name": "Jamba 1.7 Large",
@@ -646,7 +646,7 @@
     "artificial_analysis_math_index": 32.8,
     "price_input_tokens": 2,
     "price_output_tokens": 8,
-    "median_output_tokens_per_second": 50.969
+    "median_output_tokens_per_second": 51.485
   },
   {
     "name": "Jamba 1.7 Mini",
@@ -657,7 +657,7 @@
     "artificial_analysis_math_index": 13.6,
     "price_input_tokens": 0.2,
     "price_output_tokens": 0.4,
-    "median_output_tokens_per_second": 165.65
+    "median_output_tokens_per_second": 165.908
   },
   {
     "name": "QwQ 32B",
@@ -668,7 +668,7 @@
     "artificial_analysis_math_index": 86.9,
     "price_input_tokens": 0.35,
     "price_output_tokens": 0.825,
-    "median_output_tokens_per_second": 53.742
+    "median_output_tokens_per_second": 52.676
   },
   {
     "name": "Qwen3 235B A22B 2507 (Non-reasoning)",
@@ -679,7 +679,7 @@
     "artificial_analysis_math_index": 84.8,
     "price_input_tokens": 0.7,
     "price_output_tokens": 2.8,
-    "median_output_tokens_per_second": 40.362
+    "median_output_tokens_per_second": 37.909
   },
   {
     "name": "Qwen3 235B A22B 2507 (Reasoning)",
@@ -690,7 +690,7 @@
     "artificial_analysis_math_index": 96.2,
     "price_input_tokens": 0.7,
     "price_output_tokens": 8.4,
-    "median_output_tokens_per_second": 64.559
+    "median_output_tokens_per_second": 61.588
   },
   {
     "name": "Qwen3 30B A3B 2507 (Non-reasoning)",
@@ -701,7 +701,7 @@
     "artificial_analysis_math_index": 85.1,
     "price_input_tokens": 0.2,
     "price_output_tokens": 0.8,
-    "median_output_tokens_per_second": 105.751
+    "median_output_tokens_per_second": 105.661
   },
   {
     "name": "Qwen3 Coder 480B A35B",
@@ -712,7 +712,7 @@
     "artificial_analysis_math_index": 70.9,
     "price_input_tokens": 1.5,
     "price_output_tokens": 7.5,
-    "median_output_tokens_per_second": 50.106
+    "median_output_tokens_per_second": 50.314
   },
   {
     "name": "Qwen3 30B A3B 2507 (Reasoning)",
@@ -723,7 +723,7 @@
     "artificial_analysis_math_index": 94.1,
     "price_input_tokens": 0.2,
     "price_output_tokens": 2.4,
-    "median_output_tokens_per_second": 109.893
+    "median_output_tokens_per_second": 110.139
   },
   {
     "name": "Qwen3 Coder 30B A3B",
@@ -734,7 +734,7 @@
     "artificial_analysis_math_index": 59.5,
     "price_input_tokens": 0.45,
     "price_output_tokens": 2.25,
-    "median_output_tokens_per_second": 113.194
+    "median_output_tokens_per_second": 114.743
   },
   {
     "name": "o1",
@@ -745,7 +745,7 @@
     "artificial_analysis_math_index": 84.7,
     "price_input_tokens": 15,
     "price_output_tokens": 60,
-    "median_output_tokens_per_second": 169.331
+    "median_output_tokens_per_second": 183.117
   },
   {
     "name": "o1-mini",
@@ -756,7 +756,7 @@
     "artificial_analysis_math_index": 77.4,
     "price_input_tokens": 1.1,
     "price_output_tokens": 4.4,
-    "median_output_tokens_per_second": 264.685
+    "median_output_tokens_per_second": 263.879
   },
   {
     "name": "GPT-4o (May '24)",
@@ -767,7 +767,7 @@
     "artificial_analysis_math_index": 45.1,
     "price_input_tokens": 5,
     "price_output_tokens": 15,
-    "median_output_tokens_per_second": 77.525
+    "median_output_tokens_per_second": 92.955
   },
   {
     "name": "GPT-4 Turbo",
@@ -778,7 +778,7 @@
     "artificial_analysis_math_index": 44.3,
     "price_input_tokens": 10,
     "price_output_tokens": 30,
-    "median_output_tokens_per_second": 42.906
+    "median_output_tokens_per_second": 47.397
   },
   {
     "name": "GPT-4o (Nov '24)",
@@ -789,7 +789,7 @@
     "artificial_analysis_math_index": 45.5,
     "price_input_tokens": 2.5,
     "price_output_tokens": 10,
-    "median_output_tokens_per_second": 146.706
+    "median_output_tokens_per_second": 122.79
   },
   {
     "name": "GPT-4o (March 2025, chatgpt-4o-latest)",
@@ -800,7 +800,7 @@
     "artificial_analysis_math_index": 61,
     "price_input_tokens": 5,
     "price_output_tokens": 15,
-    "median_output_tokens_per_second": 169.864
+    "median_output_tokens_per_second": 203.982
   },
   {
     "name": "Llama 3.1 Instruct 70B",
@@ -811,7 +811,7 @@
     "artificial_analysis_math_index": 41.1,
     "price_input_tokens": 0.76,
     "price_output_tokens": 0.76,
-    "median_output_tokens_per_second": 59.217
+    "median_output_tokens_per_second": 58.286
   },
   {
     "name": "Llama 3.1 Instruct 8B",
@@ -822,7 +822,7 @@
     "artificial_analysis_math_index": 29.8,
     "price_input_tokens": 0.1,
     "price_output_tokens": 0.1,
-    "median_output_tokens_per_second": 225.727
+    "median_output_tokens_per_second": 220.643
   },
   {
     "name": "Llama 3.2 Instruct 3B",
@@ -833,7 +833,7 @@
     "artificial_analysis_math_index": 27.8,
     "price_input_tokens": 0.03,
     "price_output_tokens": 0.05,
-    "median_output_tokens_per_second": 102.711
+    "median_output_tokens_per_second": 134.202
   },
   {
     "name": "Llama 3 Instruct 70B",
@@ -844,7 +844,7 @@
     "artificial_analysis_math_index": 24.1,
     "price_input_tokens": 0.725,
     "price_output_tokens": 0.84,
-    "median_output_tokens_per_second": 51.074
+    "median_output_tokens_per_second": 51.108
   },
   {
     "name": "Llama 3 Instruct 8B",
@@ -855,7 +855,7 @@
     "artificial_analysis_math_index": 25,
     "price_input_tokens": 0.05,
     "price_output_tokens": 0.08,
-    "median_output_tokens_per_second": 104.013
+    "median_output_tokens_per_second": 104.134
   },
   {
     "name": "Llama 3.2 Instruct 1B",
@@ -866,7 +866,7 @@
     "artificial_analysis_math_index": 7,
     "price_input_tokens": 0.053,
     "price_output_tokens": 0.055,
-    "median_output_tokens_per_second": 174.57
+    "median_output_tokens_per_second": 175.683
   },
   {
     "name": "Llama 2 Chat 7B",
@@ -877,7 +877,7 @@
     "artificial_analysis_math_index": 2.9,
     "price_input_tokens": 0.05,
     "price_output_tokens": 0.25,
-    "median_output_tokens_per_second": 133.676
+    "median_output_tokens_per_second": 121.395
   },
   {
     "name": "Gemini 2.0 Flash-Lite (Preview)",
@@ -888,7 +888,7 @@
     "artificial_analysis_math_index": 58.8,
     "price_input_tokens": 0.075,
     "price_output_tokens": 0.3,
-    "median_output_tokens_per_second": 201.161
+    "median_output_tokens_per_second": 207.894
   },
   {
     "name": "Gemini 2.0 Flash (Feb '25)",
@@ -899,7 +899,7 @@
     "artificial_analysis_math_index": 63,
     "price_input_tokens": 0.1,
     "price_output_tokens": 0.4,
-    "median_output_tokens_per_second": 199.983
+    "median_output_tokens_per_second": 205.94
   },
   {
     "name": "Gemini 2.5 Pro Preview (Mar' 25)",
@@ -910,7 +910,7 @@
     "artificial_analysis_math_index": 92.5,
     "price_input_tokens": 1.25,
     "price_output_tokens": 10,
-    "median_output_tokens_per_second": 143.732
+    "median_output_tokens_per_second": 146.952
   },
   {
     "name": "Gemini 2.5 Pro Preview (May' 25)",
@@ -921,7 +921,7 @@
     "artificial_analysis_math_index": 91.5,
     "price_input_tokens": 1.25,
     "price_output_tokens": 10,
-    "median_output_tokens_per_second": 141.452
+    "median_output_tokens_per_second": 145.65
   },
   {
     "name": "Gemini 2.0 Flash-Lite (Feb '25)",
@@ -932,7 +932,7 @@
     "artificial_analysis_math_index": 57.5,
     "price_input_tokens": 0.075,
     "price_output_tokens": 0.3,
-    "median_output_tokens_per_second": 199.779
+    "median_output_tokens_per_second": 207.12
   },
   {
     "name": "Claude 3.5 Sonnet (Oct '24)",
@@ -943,7 +943,7 @@
     "artificial_analysis_math_index": 46.4,
     "price_input_tokens": 3,
     "price_output_tokens": 15,
-    "median_output_tokens_per_second": 78.365
+    "median_output_tokens_per_second": 79.968
   },
   {
     "name": "Claude 3 Opus",
@@ -954,7 +954,7 @@
     "artificial_analysis_math_index": 33.7,
     "price_input_tokens": 15,
     "price_output_tokens": 75,
-    "median_output_tokens_per_second": 27.792
+    "median_output_tokens_per_second": 27.299
   },
   {
     "name": "Claude 3.5 Haiku",
@@ -965,7 +965,7 @@
     "artificial_analysis_math_index": 37.7,
     "price_input_tokens": 0.8,
     "price_output_tokens": 4,
-    "median_output_tokens_per_second": 65.584
+    "median_output_tokens_per_second": 66.223
   },
   {
     "name": "Claude 3 Haiku",
@@ -976,7 +976,7 @@
     "artificial_analysis_math_index": 20.2,
     "price_input_tokens": 0.25,
     "price_output_tokens": 1.25,
-    "median_output_tokens_per_second": 140.395
+    "median_output_tokens_per_second": 138.845
   },
   {
     "name": "Claude 3.7 Sonnet (Extended Thinking)",
@@ -987,7 +987,7 @@
     "artificial_analysis_math_index": 71.7,
     "price_input_tokens": 3,
     "price_output_tokens": 15,
-    "median_output_tokens_per_second": 87.23
+    "median_output_tokens_per_second": 86.879
   },
   {
     "name": "Claude 3.7 Sonnet (Standard)",
@@ -998,7 +998,7 @@
     "artificial_analysis_math_index": 53.7,
     "price_input_tokens": 3,
     "price_output_tokens": 15,
-    "median_output_tokens_per_second": 78.25
+    "median_output_tokens_per_second": 77.045
   },
   {
     "name": "Mistral Large 2 (Nov '24)",
@@ -1009,7 +1009,7 @@
     "artificial_analysis_math_index": 42.3,
     "price_input_tokens": 2,
     "price_output_tokens": 6,
-    "median_output_tokens_per_second": 52.039
+    "median_output_tokens_per_second": 50.795
   },
   {
     "name": "Mistral Large 2 (Jul '24)",
@@ -1020,7 +1020,7 @@
     "artificial_analysis_math_index": 40.4,
     "price_input_tokens": 2,
     "price_output_tokens": 6,
-    "median_output_tokens_per_second": 105.487
+    "median_output_tokens_per_second": 108.975
   },
   {
     "name": "Pixtral Large",
@@ -1031,7 +1031,7 @@
     "artificial_analysis_math_index": 39.2,
     "price_input_tokens": 2,
     "price_output_tokens": 6,
-    "median_output_tokens_per_second": 58.28
+    "median_output_tokens_per_second": 54.775
   },
   {
     "name": "Mistral Small 3",
@@ -1042,7 +1042,7 @@
     "artificial_analysis_math_index": 39.8,
     "price_input_tokens": 0.1,
     "price_output_tokens": 0.3,
-    "median_output_tokens_per_second": 59.253
+    "median_output_tokens_per_second": 168.716
   },
   {
     "name": "Mistral Small (Sep '24)",
@@ -1053,7 +1053,7 @@
     "artificial_analysis_math_index": 31.3,
     "price_input_tokens": 0.2,
     "price_output_tokens": 0.6,
-    "median_output_tokens_per_second": 97.609
+    "median_output_tokens_per_second": 96.885
   },
   {
     "name": "Mixtral 8x22B Instruct",
@@ -1064,7 +1064,7 @@
     "artificial_analysis_math_index": 27.2,
     "price_input_tokens": 2,
     "price_output_tokens": 6,
-    "median_output_tokens_per_second": 56.47
+    "median_output_tokens_per_second": 56.613
   },
   {
     "name": "Mistral Small (Feb '24)",
@@ -1075,7 +1075,7 @@
     "artificial_analysis_math_index": 28.4,
     "price_input_tokens": 1,
     "price_output_tokens": 3,
-    "median_output_tokens_per_second": 178.807
+    "median_output_tokens_per_second": 182.988
   },
   {
     "name": "Pixtral 12B (2409)",
@@ -1086,7 +1086,7 @@
     "artificial_analysis_math_index": 22.9,
     "price_input_tokens": 0.15,
     "price_output_tokens": 0.15,
-    "median_output_tokens_per_second": 98.096
+    "median_output_tokens_per_second": 101.09
   },
   {
     "name": "Mistral NeMo",
@@ -1097,7 +1097,7 @@
     "artificial_analysis_math_index": 19.9,
     "price_input_tokens": 0.15,
     "price_output_tokens": 0.15,
-    "median_output_tokens_per_second": 183.333
+    "median_output_tokens_per_second": 178.057
   },
   {
     "name": "Mixtral 8x7B Instruct",
@@ -1108,7 +1108,7 @@
     "artificial_analysis_math_index": 15,
     "price_input_tokens": 0.7,
     "price_output_tokens": 0.7,
-    "median_output_tokens_per_second": 72.762
+    "median_output_tokens_per_second": 73.957
   },
   {
     "name": "Mistral 7B Instruct",
@@ -1119,7 +1119,7 @@
     "artificial_analysis_math_index": 6.1,
     "price_input_tokens": 0.25,
     "price_output_tokens": 0.25,
-    "median_output_tokens_per_second": 126.295
+    "median_output_tokens_per_second": 125.081
   },
   {
     "name": "Mistral Small 3.1",
@@ -1130,7 +1130,7 @@
     "artificial_analysis_math_index": 40,
     "price_input_tokens": 0.1,
     "price_output_tokens": 0.3,
-    "median_output_tokens_per_second": 149.675
+    "median_output_tokens_per_second": 150.085
   },
   {
     "name": "Devstral Small (May '25)",
@@ -1141,7 +1141,7 @@
     "artificial_analysis_math_index": 37.5,
     "price_input_tokens": 0.1,
     "price_output_tokens": 0.3,
-    "median_output_tokens_per_second": 125.66
+    "median_output_tokens_per_second": 126.931
   },
   {
     "name": "Mistral Medium",
@@ -1152,7 +1152,7 @@
     "artificial_analysis_math_index": 22.1,
     "price_input_tokens": 2.75,
     "price_output_tokens": 8.1,
-    "median_output_tokens_per_second": 60.58
+    "median_output_tokens_per_second": 60.879
   },
   {
     "name": "DeepSeek R1 Distill Qwen 32B",
@@ -1163,7 +1163,7 @@
     "artificial_analysis_math_index": 81.4,
     "price_input_tokens": 0.3,
     "price_output_tokens": 0.3,
-    "median_output_tokens_per_second": 31.899
+    "median_output_tokens_per_second": 27.338
   },
   {
     "name": "DeepSeek R1 Distill Llama 70B",
@@ -1174,7 +1174,7 @@
     "artificial_analysis_math_index": 80.2,
     "price_input_tokens": 0.7,
     "price_output_tokens": 0.8,
-    "median_output_tokens_per_second": 76.287
+    "median_output_tokens_per_second": 76.677
   },
   {
     "name": "DeepSeek R1 Distill Qwen 14B",
@@ -1185,7 +1185,7 @@
     "artificial_analysis_math_index": 80.8,
     "price_input_tokens": 0.2,
     "price_output_tokens": 0.2,
-    "median_output_tokens_per_second": 85.37
+    "median_output_tokens_per_second": 84.601
   },
   {
     "name": "DeepSeek R1 Distill Llama 8B",
@@ -1196,7 +1196,7 @@
     "artificial_analysis_math_index": 59.3,
     "price_input_tokens": 0.04,
     "price_output_tokens": 0.04,
-    "median_output_tokens_per_second": 49.512
+    "median_output_tokens_per_second": 52.238
   },
   {
     "name": "DeepSeek V3 0324 (Mar '25)",
@@ -1207,7 +1207,7 @@
     "artificial_analysis_math_index": 73.1,
     "price_input_tokens": 0.27,
     "price_output_tokens": 1.1,
-    "median_output_tokens_per_second": 21.732
+    "median_output_tokens_per_second": 22.107
   },
   {
     "name": "Sonar Pro",
@@ -1218,7 +1218,7 @@
     "artificial_analysis_math_index": 51.7,
     "price_input_tokens": 3,
     "price_output_tokens": 15,
-    "median_output_tokens_per_second": 100.361
+    "median_output_tokens_per_second": 102.144
   },
   {
     "name": "Sonar",
@@ -1229,7 +1229,7 @@
     "artificial_analysis_math_index": 65.2,
     "price_input_tokens": 1,
     "price_output_tokens": 1,
-    "median_output_tokens_per_second": 86.286
+    "median_output_tokens_per_second": 90.475
   },
   {
     "name": "Nova Lite",
@@ -1240,7 +1240,7 @@
     "artificial_analysis_math_index": 43.6,
     "price_input_tokens": 0.06,
     "price_output_tokens": 0.24,
-    "median_output_tokens_per_second": 248.106
+    "median_output_tokens_per_second": 261.548
   },
   {
     "name": "Nova Micro",
@@ -1251,7 +1251,7 @@
     "artificial_analysis_math_index": 39.2,
     "price_input_tokens": 0.035,
     "price_output_tokens": 0.14,
-    "median_output_tokens_per_second": 358.431
+    "median_output_tokens_per_second": 356.934
   },
   {
     "name": "Phi-3 Medium Instruct 14B",
@@ -1262,7 +1262,7 @@
     "artificial_analysis_math_index": 23.8,
     "price_input_tokens": 0.17,
     "price_output_tokens": 0.68,
-    "median_output_tokens_per_second": 53.444
+    "median_output_tokens_per_second": 52.899
   },
   {
     "name": "LFM 40B",
@@ -1273,7 +1273,7 @@
     "artificial_analysis_math_index": 25.2,
     "price_input_tokens": 0.15,
     "price_output_tokens": 0.15,
-    "median_output_tokens_per_second": 151.126
+    "median_output_tokens_per_second": 157.05
   },
   {
     "name": "Hermes 3 - Llama-3.1 70B",
@@ -1284,7 +1284,7 @@
     "artificial_analysis_math_index": 28.1,
     "price_input_tokens": 0.1,
     "price_output_tokens": 0.28,
-    "median_output_tokens_per_second": 33.669
+    "median_output_tokens_per_second": 37.475
   },
   {
     "name": "Command-R+ (Aug '24)",
@@ -1295,7 +1295,7 @@
     "artificial_analysis_math_index": 20.1,
     "price_input_tokens": 2.5,
     "price_output_tokens": 10,
-    "median_output_tokens_per_second": 47.847
+    "median_output_tokens_per_second": 48.624
   },
   {
     "name": "Command-R+ (Apr '24)",
@@ -1306,7 +1306,7 @@
     "artificial_analysis_math_index": 14.3,
     "price_input_tokens": 3,
     "price_output_tokens": 15,
-    "median_output_tokens_per_second": 62.255
+    "median_output_tokens_per_second": 61.251
   },
   {
     "name": "Command-R (Aug '24)",
@@ -1317,7 +1317,7 @@
     "artificial_analysis_math_index": 7.6,
     "price_input_tokens": 0.15,
     "price_output_tokens": 0.6,
-    "median_output_tokens_per_second": 71.679
+    "median_output_tokens_per_second": 70.324
   },
   {
     "name": "Command-R (Mar '24)",
@@ -1328,7 +1328,7 @@
     "artificial_analysis_math_index": 8.5,
     "price_input_tokens": 0.5,
     "price_output_tokens": 1.5,
-    "median_output_tokens_per_second": 174.744
+    "median_output_tokens_per_second": 179.342
   },
   {
     "name": "Jamba 1.6 Mini",
@@ -1339,7 +1339,7 @@
     "artificial_analysis_math_index": 14.5,
     "price_input_tokens": 0.2,
     "price_output_tokens": 0.4,
-    "median_output_tokens_per_second": 167.176
+    "median_output_tokens_per_second": 165.017
   },
   {
     "name": "Jamba 1.6 Large",
@@ -1350,7 +1350,7 @@
     "artificial_analysis_math_index": 31.3,
     "price_input_tokens": 2,
     "price_output_tokens": 8,
-    "median_output_tokens_per_second": 49.763
+    "median_output_tokens_per_second": 49.699
   },
   {
     "name": "Qwen2.5 Max",
@@ -1361,7 +1361,7 @@
     "artificial_analysis_math_index": 53.4,
     "price_input_tokens": 1.6,
     "price_output_tokens": 6.4,
-    "median_output_tokens_per_second": 40.119
+    "median_output_tokens_per_second": 39.771
   },
   {
     "name": "Qwen2.5 Coder Instruct 32B",
@@ -1372,7 +1372,7 @@
     "artificial_analysis_math_index": 44.3,
     "price_input_tokens": 0.135,
     "price_output_tokens": 0.18,
-    "median_output_tokens_per_second": 52.945
+    "median_output_tokens_per_second": 52.66
   },
   {
     "name": "Qwen2.5 Turbo",
@@ -1383,7 +1383,7 @@
     "artificial_analysis_math_index": 46.3,
     "price_input_tokens": 0.05,
     "price_output_tokens": 0.2,
-    "median_output_tokens_per_second": 80.7
+    "median_output_tokens_per_second": 88.318
   },
   {
     "name": "Qwen3 235B A22B (Reasoning)",
@@ -1394,7 +1394,7 @@
     "artificial_analysis_math_index": 88.5,
     "price_input_tokens": 0.7,
     "price_output_tokens": 8.4,
-    "median_output_tokens_per_second": 35.152
+    "median_output_tokens_per_second": 33.332
   },
   {
     "name": "Qwen3 30B A3B (Reasoning)",
@@ -1405,7 +1405,7 @@
     "artificial_analysis_math_index": 85.6,
     "price_input_tokens": 0.2,
     "price_output_tokens": 2.4,
-    "median_output_tokens_per_second": 80.704
+    "median_output_tokens_per_second": 87.076
   },
   {
     "name": "Qwen3 235B A22B",
@@ -1427,7 +1427,7 @@
     "artificial_analysis_math_index": 88.4,
     "price_input_tokens": 0.7,
     "price_output_tokens": 8.4,
-    "median_output_tokens_per_second": 64.256
+    "median_output_tokens_per_second": 65.14
   },
   {
     "name": "Qwen3 4B",
@@ -1438,7 +1438,7 @@
     "artificial_analysis_math_index": 52.8,
     "price_input_tokens": 0.11,
     "price_output_tokens": 0.42,
-    "median_output_tokens_per_second": 106.741
+    "median_output_tokens_per_second": 106.738
   },
   {
     "name": "Qwen3 8B (Reasoning)",
@@ -1449,7 +1449,7 @@
     "artificial_analysis_math_index": 82.5,
     "price_input_tokens": 0.18,
     "price_output_tokens": 2.1,
-    "median_output_tokens_per_second": 98.893
+    "median_output_tokens_per_second": 98.639
   },
   {
     "name": "Qwen3 8B",
@@ -1460,7 +1460,7 @@
     "artificial_analysis_math_index": 53.6,
     "price_input_tokens": 0.18,
     "price_output_tokens": 0.7,
-    "median_output_tokens_per_second": 100.148
+    "median_output_tokens_per_second": 100.047
   },
   {
     "name": "Qwen3 1.7B",
@@ -1471,7 +1471,7 @@
     "artificial_analysis_math_index": 40.7,
     "price_input_tokens": 0.11,
     "price_output_tokens": 0.42,
-    "median_output_tokens_per_second": 140.641
+    "median_output_tokens_per_second": 140.417
   },
   {
     "name": "Qwen3 0.6B",
@@ -1482,7 +1482,7 @@
     "artificial_analysis_math_index": 26.9,
     "price_input_tokens": 0.11,
     "price_output_tokens": 0.42,
-    "median_output_tokens_per_second": 231.564
+    "median_output_tokens_per_second": 232.054
   },
   {
     "name": "Qwen3 14B",
@@ -1493,7 +1493,7 @@
     "artificial_analysis_math_index": 57.6,
     "price_input_tokens": 0.35,
     "price_output_tokens": 1.4,
-    "median_output_tokens_per_second": 55.054
+    "median_output_tokens_per_second": 55.599
   },
   {
     "name": "Qwen3 4B (Reasoning)",
@@ -1504,7 +1504,7 @@
     "artificial_analysis_math_index": 79.5,
     "price_input_tokens": 0.11,
     "price_output_tokens": 1.26,
-    "median_output_tokens_per_second": 105.187
+    "median_output_tokens_per_second": 105.079
   },
   {
     "name": "Qwen3 32B",
@@ -1515,7 +1515,7 @@
     "artificial_analysis_math_index": 58.6,
     "price_input_tokens": 0.7,
     "price_output_tokens": 2.8,
-    "median_output_tokens_per_second": 64.117
+    "median_output_tokens_per_second": 64.675
   },
   {
     "name": "Qwen3 30B A3B",
@@ -1526,7 +1526,7 @@
     "artificial_analysis_math_index": 56.1,
     "price_input_tokens": 0.2,
     "price_output_tokens": 0.8,
-    "median_output_tokens_per_second": 88.034
+    "median_output_tokens_per_second": 88.511
   },
   {
     "name": "Qwen3 14B (Reasoning)",
@@ -1548,7 +1548,7 @@
     "artificial_analysis_math_index": 70.2,
     "price_input_tokens": 0.11,
     "price_output_tokens": 1.26,
-    "median_output_tokens_per_second": 138.151
+    "median_output_tokens_per_second": 138.04
   },
   {
     "name": "Qwen3 0.6B (Reasoning)",
@@ -1559,7 +1559,7 @@
     "artificial_analysis_math_index": 42.5,
     "price_input_tokens": 0.11,
     "price_output_tokens": 1.26,
-    "median_output_tokens_per_second": 227.685
+    "median_output_tokens_per_second": 227.556
   },
   {
     "name": "QwQ 32B-Preview",
@@ -1570,6 +1570,6 @@
     "artificial_analysis_math_index": 68.2,
     "price_input_tokens": 0.66,
     "price_output_tokens": 0.69,
-    "median_output_tokens_per_second": 49.854
+    "median_output_tokens_per_second": 49.818
   }
 ]

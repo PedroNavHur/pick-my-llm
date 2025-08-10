@@ -1,0 +1,23 @@
+{
+  "categories": {
+    "general": [
+      "Summarize this article about climate change.",
+      "Draft a polite email to reschedule a meeting."
+    ],
+    "code": [
+      "Write a Python function to merge two sorted lists.",
+      "Fix this TypeScript type error."
+    ],
+    "math": ["Prove the triangle inequality.", "Compute the derivative of x^x."]
+  },
+  "difficulty": {
+    "easy": [
+      "Explain HTTP in one paragraph.",
+      "Translate this short sentence to Spanish."
+    ],
+    "hard": [
+      "Prove convergence of this series.",
+      "Refactor a 200-line function with tests."
+    ]
+  }
+}

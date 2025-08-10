@@ -4,7 +4,8 @@ import { useChat } from "@ai-sdk/react";
 import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 
-import { routeModel } from "@/lib/brute_router";
+import { classifyPrompt } from "@/lib/client/classify";
+import { pickModels } from "@/lib/pickModels";
 import { RouterUIMessage } from "@/lib/types";
 import { useRouterStore } from "@/store/router";
 // flatten AI SDK UIMessage parts → text
@@ -34,23 +35,36 @@ export default function ChatPanel() {
     const prompt = input.trim();
     if (!prompt) return;
 
-    // 2) call the router with the prompt and current weights
     try {
-      // Preferred: rankModels returns ScoredModel[] sorted desc.
-      const ranked = routeModel(prompt, weights);
-      setTopModels(ranked.alternatives);
+      // 1) get routing signal (task, taskScores, difficulty, difficultyScore)
+      const { task, taskScores, difficulty, difficultyScore } =
+        await classifyPrompt(prompt);
 
-      // If you don’t have rankModels, you can do:
-      // const { primary, alternatives } = routeModel(prompt, weights);
-      // setTopModels([primary, ...alternatives].slice(0, 5));
+      // optional: if you have UI sliders / a dropdown
+      // const baseWeights = { intelligence: 0.5, speed: 0.25, price: 0.25 };
+      // const userPreference: UserPreference = selectedPref; // "intelligence" | "speed" | "price"
+
+      // 2) rank models with the new picker
+      const { alternatives } = pickModels({
+        task,
+        taskScores,
+        difficulty,
+        difficultyScore,
+        userPreference: "intelligence", // <-- your selected pref (or omit)
+        baseWeights: weights, // <-- if you still have sliders; otherwise remove
+        // preferenceBoost: 0.15,  // optional tweak
+      });
+
+      // 3) push top-5 into Zustand
+      setTopModels(alternatives);
+
+      // 4) send the message to the chat
+      await sendMessage({ text: prompt });
+      setInput("");
     } catch (err) {
       console.error("Router error:", err);
-      toast.error("Failed to score models for this prompt.");
+      toast.error("Failed to classify/score models for this prompt.");
     }
-
-    await sendMessage({ text: prompt });
-
-    setInput("");
   }
 
   return (

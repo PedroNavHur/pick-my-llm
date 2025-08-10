@@ -8,7 +8,7 @@ from typing import Any, Dict, Iterable, List
 OUT_KEYS = [
     "name",
     "slug",
-    "provider",  # from model_creator.slug
+    "provider",  # from model_creator.slug or name
     "artificial_analysis_intelligence_index",
     "artificial_analysis_coding_index",
     "artificial_analysis_math_index",
@@ -16,6 +16,16 @@ OUT_KEYS = [
     "price_output_tokens",
     "median_output_tokens_per_second",
 ]
+
+# Providers we allow (normalize before comparison)
+ALLOWED_PROVIDERS = {
+    "openai",
+    "anthropic",
+    "google",
+}
+
+def norm_provider(p: Any) -> str:
+    return str(p or "").strip().lower().replace(" ", "").replace("_", "-")
 
 def extract_one(model: Dict[str, Any]) -> Dict[str, Any]:
     evals   = model.get("evaluations") or {}
@@ -51,6 +61,11 @@ def iter_source(doc: Dict[str, Any]) -> Iterable[Dict[str, Any]]:
         yield doc
 
 def valid_row(row: Dict[str, Any]) -> bool:
+    # Provider allowlist
+    prov = norm_provider(row.get("provider"))
+    if prov not in ALLOWED_PROVIDERS:
+        return False
+
     # Keep only rows where every requested field exists and is neither None nor 0
     for k in OUT_KEYS:
         if k not in row:
@@ -58,13 +73,12 @@ def valid_row(row: Dict[str, Any]) -> bool:
         v = row[k]
         if v is None or v == 0:
             return False
-        # (optional) also disallow empty strings:
         if isinstance(v, str) and v.strip() == "":
             return False
     return True
 
 def main():
-    ap = ArgumentParser(description="Extract model fields from JSON → JSON (drop rows with missing/null/0 fields)")
+    ap = ArgumentParser(description="Extract model fields from JSON → JSON (drop rows with missing/null/0 fields and non-allowed providers)")
     ap.add_argument("infile", help="Input JSON (or '-' for stdin)")
     ap.add_argument("-o", "--out", help="Output JSON file (default: stdout)")
     args = ap.parse_args()

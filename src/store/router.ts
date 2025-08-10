@@ -3,12 +3,12 @@
 
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
+import type { SemanticRouting } from "@/lib/semantic_router";
 
-/** Cleaned model row (all required) */
 export interface ModelRow {
   name: string;
-  slug: string; // e.g. "gpt-4o-mini"
-  provider: string; // e.g. "openai"
+  slug: string;
+  provider: string;
   artificial_analysis_intelligence_index: number;
   artificial_analysis_coding_index: number;
   artificial_analysis_math_index: number;
@@ -23,31 +23,35 @@ export interface Weights {
   price: number;
 }
 
+export type UserPreference = "intelligence" | "speed" | "price";
+
 export interface ScoredModel extends ModelRow {
   score: number;
   breakdown: { intel: number; speed: number; price: number };
 }
 
-/** Metadata you may attach to a chat response/run */
 export interface ModelMeta {
-  model?: string; // e.g. "gpt-4o-mini"
-  provider?: string; // e.g. "openai"
-  inputPrice?: number; // $ per 1M
-  outputPrice?: number; // $ per 1M
+  model?: string;
+  provider?: string;
+  inputPrice?: number;
+  outputPrice?: number;
   totalTokens?: number;
   promptTokens?: number;
   completionTokens?: number;
   latencyMs?: number;
   ttfbMs?: number;
-  // add fields as needed, but keep them typed
 }
 
 interface RouterState {
   // UI/controls
   weights: Weights;
+  userPreference: UserPreference;
 
-  // selection + metadata
-  selectedModel?: string; // slug
+  // last classification / routing signal
+  routing?: SemanticRouting;
+
+  // optional selection (keep if you still use it elsewhere)
+  selectedModel?: string;
   modelMeta?: ModelMeta;
 
   // results
@@ -55,7 +59,9 @@ interface RouterState {
 
   // actions
   setWeights: (partial: Partial<Weights>, normalize?: boolean) => void;
-  setSelectedModel: (slug?: string) => void;
+  setUserPreference: (p: UserPreference) => void;
+  setRouting: (r?: SemanticRouting) => void;
+  setSelectedModel: (slug?: string) => void; // optional if you still need it
   setModelMeta: (meta?: ModelMeta) => void;
   setTopModels: (models: ScoredModel[]) => void;
   reset: () => void;
@@ -70,8 +76,9 @@ function normalizeWeights(w: Weights): Weights {
   };
 }
 
-const INITIAL: Pick<RouterState, "weights" | "topModels"> = {
-  weights: { intelligence: 0.5, speed: 0.25, price: 0.25 },
+const INITIAL: Pick<RouterState, "weights" | "topModels" | "userPreference"> = {
+  weights: { intelligence: 0.3, speed: 0.2, price: 0.5 },
+  userPreference: "intelligence",
   topModels: [],
 };
 
@@ -90,14 +97,18 @@ export const useRouterStore = create<RouterState>()(
         set({ weights: normalize ? normalizeWeights(merged) : merged });
       },
 
+      setUserPreference: p => set({ userPreference: p }),
+
+      setRouting: r => set({ routing: r }),
+
+      // Keep if you still highlight a row somewhere
       setSelectedModel: slug => set({ selectedModel: slug }),
 
       setModelMeta: meta => set({ modelMeta: meta }),
 
       setTopModels: models => {
-        const top5 = models.slice(0, 5);
-        set({ topModels: top5 });
-        if (top5.length > 0) set({ selectedModel: top5[0].slug });
+        // No auto-select (you said you don’t need selection)
+        set({ topModels: models.slice(0, 5) });
       },
 
       reset: () =>
@@ -105,6 +116,7 @@ export const useRouterStore = create<RouterState>()(
           ...INITIAL,
           selectedModel: undefined,
           modelMeta: undefined,
+          routing: undefined,
         }),
     }),
     {

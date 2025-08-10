@@ -21,6 +21,7 @@ export default function ChatPanel() {
   // Zustand: read weights, setter for top models
   const weights = useRouterStore(s => s.weights);
   const setTopModels = useRouterStore(s => s.setTopModels);
+  const preference = useRouterStore(s => s.userPreference);
 
   const listRef = useRef<HTMLDivElement>(null);
 
@@ -50,9 +51,8 @@ export default function ChatPanel() {
         taskScores,
         difficulty,
         difficultyScore,
-        userPreference: "intelligence", // <-- your selected pref (or omit)
-        baseWeights: weights, // <-- if you still have sliders; otherwise remove
-        // preferenceBoost: 0.15,  // optional tweak
+        userPreference: preference,
+        baseWeights: weights,
       });
 
       // 3) push top-5 into Zustand

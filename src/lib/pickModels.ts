@@ -107,8 +107,8 @@ export function pickModels(args: {
     taskScores,
     difficultyScore,
     userPreference,
-    baseWeights = { intelligence: 0.4, speed: 0.2, price: 0.4 },
-    preferenceBoost = 0.2,
+    baseWeights = { intelligence: 0.2, speed: 0.1, price: 0.7 },
+    preferenceBoost = 0.4,
   } = args;
 
   // Start with base weights
@@ -117,7 +117,7 @@ export function pickModels(args: {
   let wp = baseWeights.price;
 
   // Nudge for difficulty (hard ⇒ a bit more intelligence)
-  const diffBoost = 0.15 * Math.max(0, Math.min(1, difficultyScore)); // up to +0.15 to intelligence
+  const diffBoost = 0.2 * Math.max(0, Math.min(1, difficultyScore)); // up to +0.2 to intelligence
   wi += diffBoost;
   // remove from speed/price proportionally
   const rem = diffBoost;

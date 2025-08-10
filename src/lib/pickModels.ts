@@ -53,14 +53,6 @@ const sIntelCode = mkScaler(
 );
 const sIntelMath = mkScaler(MODELS.map(m => m.artificial_analysis_math_index));
 const sSpeed = mkScaler(MODELS.map(m => m.median_output_tokens_per_second));
-const sPriceIn = mkScaler(
-  MODELS.map(m => m.price_input_tokens),
-  true
-);
-const sPriceOut = mkScaler(
-  MODELS.map(m => m.price_output_tokens),
-  true
-);
 
 /* ---------- intelligence blending via soft task scores ---------- */
 function blendedIntel(m: ModelRow, taskScores: Record<Task, number>) {
@@ -85,11 +77,19 @@ function blendedIntel(m: ModelRow, taskScores: Record<Task, number>) {
 function modelSpeed(m: ModelRow) {
   return sSpeed(m.median_output_tokens_per_second);
 }
+
+// --- build a scaler on the 3:1 blended $/1M ---
+const sPrice3to1 = mkScaler(
+  MODELS.map(
+    m => 0.75 * m.price_input_tokens + 0.25 * m.price_output_tokens
+  ),
+  /* invert */ true // cheaper → larger score
+);
+
+// Price component (normalized score)
 function modelPrice(m: ModelRow) {
-  // average input/output price scores (both already inverted)
-  return (
-    (sPriceIn(m.price_input_tokens) + sPriceOut(m.price_output_tokens)) / 2
-  );
+  const blended = 0.75 * m.price_input_tokens + 0.25 * m.price_output_tokens;
+  return sPrice3to1(blended);
 }
 
 /* ---------- main picker ---------- */
@@ -99,7 +99,7 @@ export function pickModels(args: {
   difficulty: Difficulty;
   difficultyScore: number; // 0..1
   userPreference?: UserPreference; // optional
-  baseWeights?: Weights; // optional override (defaults below)
+  baseWeights: Weights; //
   preferenceBoost?: number; // optional tweak amount (default 0.15)
 }): RouteResult {
   const {
@@ -107,8 +107,8 @@ export function pickModels(args: {
     taskScores,
     difficultyScore,
     userPreference,
-    baseWeights = { intelligence: 0.2, speed: 0.1, price: 0.7 },
-    preferenceBoost = 0.4,
+    baseWeights,
+    preferenceBoost = 0.5,
   } = args;
 
   // Start with base weights

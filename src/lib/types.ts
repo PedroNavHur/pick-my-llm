@@ -4,19 +4,9 @@ import { UIMessage } from "ai";
 export type RouterUIMessage = UIMessage<
   never, // metadata type
   {
-    weather: {
-      city: string;
-      weather?: string;
-      status: "loading" | "success";
-    };
-    notification: {
-      message: string;
-      level: "info" | "warning" | "error";
-    };
     llmmodel: {
       name: string;
       provider: string;
-      status: "loading" | "success";
     };
   } // data parts type
 >;

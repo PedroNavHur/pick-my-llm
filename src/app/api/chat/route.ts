@@ -45,42 +45,17 @@ export async function POST(req: Request) {
 
   const stream = createUIMessageStream<RouterUIMessage>({
     execute: ({ writer }) => {
-      // 1. Send initial status (transient - won't be added to message history)
+      // Send Model Part as data part so it's bound to the message
+      // and can be used in the UI to display model info.
       writer.write({
-        type: "data-notification",
-        data: { message: "Processing your request...", level: "info" },
-        transient: true, // This part won't be added to message history
-      });
-
-      // 3. Send data parts with loading state
-      writer.write({
-        type: "data-weather",
-        id: "weather-1",
-        data: { city: "San Francisco", status: "loading" },
+        type: "data-llmmodel",
+        id: "llm-model-1",
+        data: { name: "GPT-5 Nano", provider: "OpenAI" },
       });
 
       const result = streamText({
         model: openai("gpt-5-nano"),
         messages: convertToModelMessages(messages),
-        onFinish() {
-          // 4. Update the same data part (reconciliation)
-          writer.write({
-            type: "data-weather",
-            id: "weather-1", // Same ID = update existing part
-            data: {
-              city: "San Francisco",
-              weather: "sunny",
-              status: "success",
-            },
-          });
-
-          // 5. Send completion notification (transient)
-          writer.write({
-            type: "data-notification",
-            data: { message: "Request completed", level: "info" },
-            transient: true, // Won't be added to message history
-          });
-        },
       });
 
       writer.merge(result.toUIMessageStream());

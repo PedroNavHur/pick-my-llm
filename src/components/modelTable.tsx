@@ -31,30 +31,47 @@ function providerColorClass(provider: string): string {
 function ProviderBadge({ provider }: { provider: string }) {
   const Icon = PROVIDER_ICONS[normalizeProvider(provider)];
   return (
-    <div className={`size-6 rounded-full grid place-items-center text-white ${providerColorClass(provider)}`}>
-      {Icon ? <Icon className="size-4" /> : <span className="text-xs font-bold">{provider[0]}</span>}
+    <div
+      className={`size-6 rounded-full grid place-items-center text-white ${providerColorClass(provider)}`}
+    >
+      {Icon ? (
+        <Icon className="size-4" />
+      ) : (
+        <span className="text-xs font-bold">{provider[0]}</span>
+      )}
     </div>
   );
 }
 
-const fmt1 = new Intl.NumberFormat(undefined, { minimumFractionDigits: 1, maximumFractionDigits: 1 });
-const money2 = new Intl.NumberFormat(undefined, { style: "currency", currency: "USD", minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const fmt1 = new Intl.NumberFormat(undefined, {
+  minimumFractionDigits: 1,
+  maximumFractionDigits: 1,
+});
+const money2 = new Intl.NumberFormat(undefined, {
+  style: "currency",
+  currency: "USD",
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2,
+});
 
 const to10 = (x: number) => (Math.max(0, Math.min(1, x)) * 10).toFixed(1);
 const tps = (n: number) => fmt1.format(n);
 const price = (n: number) => money2.format(n);
 
 // shared grid: 1 flexible name col + 4 content-fit KPI cols
-const COLS = "grid grid-cols-[minmax(0,1fr)_auto_auto_auto_auto] items-center gap-3";
+const COLS =
+  "grid grid-cols-[minmax(0,1fr)_auto_auto_auto_auto] items-center gap-3";
 
 export default function ModelTable() {
-  const topModels = useRouterStore((s) => s.topModels);
+  const topModels = useRouterStore(s => s.topModels);
   const rows = useMemo(() => topModels ?? [], [topModels]);
 
   return (
     <div className="w-full py-4">
       {/* header */}
-      <div className={`px-3 pb-2 uppercase tracking-wide text-base-content/60 text-xs ${COLS}`}>
+      <div
+        className={`px-3 pb-2 uppercase tracking-wide text-base-content/60 text-xs ${COLS}`}
+      >
         <div>Model</div>
         <div className="justify-self-end min-w-12">Intelligence</div>
         <div className="justify-self-end min-w-13">Speed</div>
@@ -79,26 +96,36 @@ export default function ModelTable() {
                 <ProviderBadge provider={m.provider} />
                 <div className="min-w-0">
                   <div className="truncate font-medium text-xs">{m.name}</div>
-                  <div className="truncate text-xs text-base-content/60">{m.provider}</div>
+                  <div className="truncate text-xs text-base-content/60">
+                    {m.provider}
+                  </div>
                 </div>
               </div>
 
               {/* intelligence */}
               <div className="justify-self-end whitespace-nowrap">
-                <span className="badge badge-neutral badge-sm min-w-11">{to10(m.breakdown.intel)}</span>
+                <span className="badge badge-neutral badge-sm min-w-11">
+                  {to10(m.breakdown.intel)}
+                </span>
               </div>
 
               {/* speed (raw TPS) */}
               <div className="justify-self-end whitespace-nowrap">
-                <span className="badge badge-ghost badge-sm min-w-14">{tps(m.median_output_tokens_per_second)}</span>
+                <span className="badge badge-ghost badge-sm min-w-14">
+                  {tps(m.median_output_tokens_per_second)}
+                </span>
               </div>
 
               {/* prices */}
               <div className="justify-self-end whitespace-nowrap">
-                <span className="badge badge-neutral badge-sm min-w-14">{price(m.price_input_tokens)}</span>
+                <span className="badge badge-neutral badge-sm min-w-14">
+                  {price(m.price_input_tokens)}
+                </span>
               </div>
               <div className="justify-self-end whitespace-nowrap">
-                <span className="badge badge-ghost badge-sm min-w-14">{price(m.price_output_tokens)}</span>
+                <span className="badge badge-ghost badge-sm min-w-14">
+                  {price(m.price_output_tokens)}
+                </span>
               </div>
             </div>
           ))

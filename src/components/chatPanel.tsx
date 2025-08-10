@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 
 import { routeModel } from "@/lib/router";
+import { RouterUIMessage } from "@/lib/types";
 import { useRouterStore } from "@/store/router";
 // flatten AI SDK UIMessage parts → text
 const asText = (parts: { type: string; text?: string }[]) =>
@@ -32,9 +33,7 @@ export default function ChatPanel() {
     e.preventDefault();
     const prompt = input.trim();
     if (!prompt) return;
-    await sendMessage({ text: prompt });
 
-    setInput("");
     // 2) call the router with the prompt and current weights
     try {
       // Preferred: rankModels returns ScoredModel[] sorted desc.
@@ -48,6 +47,10 @@ export default function ChatPanel() {
       console.error("Router error:", err);
       toast.error("Failed to score models for this prompt.");
     }
+
+    await sendMessage({ text: prompt });
+
+    setInput("");
   }
 
   return (
@@ -70,16 +73,20 @@ export default function ChatPanel() {
             </div>
           ) : (
             <div className="space-y-3 pb-3">
-              {messages.map(m => {
+              {(messages as RouterUIMessage[]).map(m => {
                 const isUser = m.role === "user";
+
+                // Look for a metadata part like: { type: "data-llmmodel", data: { name: "GPT-4.1" } }
+                const assistantLabel = m.parts.find(part => part.type === "data-llmmodel")?.data.name;
+
                 return (
                   <div
                     key={m.id}
                     className={`chat ${isUser ? "chat-end" : "chat-start"}`}
                   >
-                    {/* Speaker label (no metadata logic yet) */}
+                    {/* Speaker label (uses metadata if present) */}
                     <div className="chat-header text-xs opacity-60 mb-1">
-                      {isUser ? "You" : "LLM"}
+                      {isUser ? "You" : assistantLabel}
                     </div>
 
                     {/* Bubble */}

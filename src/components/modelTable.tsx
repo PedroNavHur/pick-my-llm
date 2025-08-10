@@ -5,11 +5,7 @@ import { useRouterStore } from "@/store/router";
 import { useMemo } from "react";
 import type { IconType } from "react-icons";
 import { RiAnthropicFill } from "react-icons/ri";
-import {
-  SiGoogle,
-  SiOpenai,
-  SiX /* SiMistral not in SI yet */,
-} from "react-icons/si";
+import { SiGoogle, SiOpenai, SiX } from "react-icons/si";
 
 function normalizeProvider(p: string) {
   return p.toLowerCase().replace(/\s+/g, "");
@@ -24,126 +20,90 @@ const PROVIDER_ICONS: Partial<Record<string, IconType>> = {
 
 function providerColorClass(provider: string): string {
   const p = normalizeProvider(provider);
-  if (p === "openai") return "bg-primary";
-  if (p === "anthropic") return "bg-secondary";
-  if (p === "google") return "bg-accent";
-  if (p === "xai") return "bg-info";
-  if (p === "mistral") return "bg-warning";
+  if (p === "openai") return "bg-success-content";
+  if (p === "anthropic") return "bg-warning";
+  if (p === "google") return "bg-info-content";
+  if (p === "xai") return "bg-base-content";
+  if (p === "mistral") return "bg-neutral";
   return "bg-neutral";
 }
 
 function ProviderBadge({ provider }: { provider: string }) {
   const Icon = PROVIDER_ICONS[normalizeProvider(provider)];
   return (
-    <div
-      className={`size-9 rounded-full grid place-items-center text-white ${providerColorClass(provider)}`}
-    >
-      {Icon ? (
-        <Icon className="size-5" />
-      ) : (
-        <span className="text-xs font-bold">{provider[0]}</span>
-      )}
+    <div className={`size-6 rounded-full grid place-items-center text-white ${providerColorClass(provider)}`}>
+      {Icon ? <Icon className="size-4" /> : <span className="text-xs font-bold">{provider[0]}</span>}
     </div>
   );
 }
 
-function to10(x: number): string {
-  // convert normalized [0..1] → 0..10 with 1 decimal
-  const v = Math.max(0, Math.min(1, x)) * 10;
-  return v.toFixed(1);
-}
+const fmt1 = new Intl.NumberFormat(undefined, { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+const money2 = new Intl.NumberFormat(undefined, { style: "currency", currency: "USD", minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
-function dollarsPerMillion(n: number): string {
-  return `$${n}`;
-}
+const to10 = (x: number) => (Math.max(0, Math.min(1, x)) * 10).toFixed(1);
+const tps = (n: number) => fmt1.format(n);
+const price = (n: number) => money2.format(n);
 
-function formatTPS(n: number): string {
-  return n.toFixed(1); // one decimal, e.g. "347.9"
-}
+// shared grid: 1 flexible name col + 4 content-fit KPI cols
+const COLS = "grid grid-cols-[minmax(0,1fr)_auto_auto_auto_auto] items-center gap-3";
 
 export default function ModelTable() {
-  const topModels = useRouterStore(s => s.topModels);
-  const selectedModel = useRouterStore(s => s.selectedModel);
-  const setSelectedModel = useRouterStore(s => s.setSelectedModel);
-
+  const topModels = useRouterStore((s) => s.topModels);
   const rows = useMemo(() => topModels ?? [], [topModels]);
 
   return (
-    <div className="overflow-x-auto">
-      <table className="table table-xs w-full">
-        <thead>
-          <tr>
-            <th>Model</th>
-            <th>Intelligence</th>
-            <th>Speed</th>
-            <th>Input</th>
-            <th>Output</th>
-          </tr>
-        </thead>
+    <div className="w-full py-4">
+      {/* header */}
+      <div className={`px-3 pb-2 uppercase tracking-wide text-base-content/60 text-xs ${COLS}`}>
+        <div>Model</div>
+        <div className="justify-self-end min-w-12">Intelligence</div>
+        <div className="justify-self-end min-w-13">Speed</div>
+        <div className="justify-self-end min-w-13">Input</div>
+        <div className="justify-self-end min-w-13">Output</div>
+      </div>
 
-        <tbody>
-          {rows.length === 0 ? (
-            <tr>
-              <td
-                colSpan={5}
-                className="text-center text-sm text-base-content/60"
-              >
-                No models yet. Ask something in the chat to see recommendations.
-              </td>
-            </tr>
-          ) : (
-            rows.map((m: ScoredModel) => {
-              const isActive = selectedModel === m.slug;
-              return (
-                <tr
-                  key={m.slug}
-                  className={`${isActive ? "bg-base-200" : ""} cursor-pointer`}
-                  onClick={() => setSelectedModel(m.slug)}
-                >
-                  {/* Model + Provider */}
-                  <td>
-                    <div className="flex items-center gap-3">
-                      <ProviderBadge provider={m.provider} />
-                      <div className="flex flex-col">
-                        <span className="font-medium text-xs">{m.name}</span>
-                        <span className="text-xs text-base-content/60">
-                          {m.provider}
-                        </span>
-                      </div>
-                    </div>
-                  </td>
+      {/* rows */}
+      <div className="space-y-2">
+        {rows.length === 0 ? (
+          <div className="rounded-full border border-base-300 bg-base-100 p-4 text-center text-sm text-base-content/60">
+            No models yet. Ask something in the chat to see recommendations.
+          </div>
+        ) : (
+          rows.map((m: ScoredModel) => (
+            <div
+              key={m.slug}
+              className={`w-full ${COLS} rounded-full bg-base-100 first:bg-base-300 px-2 py-1 text-left shadow-sm`}
+            >
+              {/* model + provider */}
+              <div className="flex items-center gap-2 min-w-0">
+                <ProviderBadge provider={m.provider} />
+                <div className="min-w-0">
+                  <div className="truncate font-medium text-xs">{m.name}</div>
+                  <div className="truncate text-xs text-base-content/60">{m.provider}</div>
+                </div>
+              </div>
 
-                  {/* Intelligence (0–10 from normalized breakdown) */}
-                  <td>
-                    <span className="badge badge-ghost">
-                      {to10(m.breakdown.intel)}
-                    </span>
-                  </td>
+              {/* intelligence */}
+              <div className="justify-self-end whitespace-nowrap">
+                <span className="badge badge-neutral badge-sm min-w-11">{to10(m.breakdown.intel)}</span>
+              </div>
 
-                  {/* Speed (0–10 from normalized breakdown) */}
-                  <td>
-                    <span className="badge badge-ghost">
-                      {formatTPS(m.median_output_tokens_per_second)}
-                    </span>
-                  </td>
+              {/* speed (raw TPS) */}
+              <div className="justify-self-end whitespace-nowrap">
+                <span className="badge badge-ghost badge-sm min-w-14">{tps(m.median_output_tokens_per_second)}</span>
+              </div>
 
-                  {/* Prices */}
-                  <td>
-                    <span className="badge badge-ghost">
-                      {dollarsPerMillion(m.price_input_tokens)}
-                    </span>
-                  </td>
-                  <td>
-                    <span className="badge badge-ghost">
-                      {dollarsPerMillion(m.price_output_tokens)}
-                    </span>
-                  </td>
-                </tr>
-              );
-            })
-          )}
-        </tbody>
-      </table>
+              {/* prices */}
+              <div className="justify-self-end whitespace-nowrap">
+                <span className="badge badge-neutral badge-sm min-w-14">{price(m.price_input_tokens)}</span>
+              </div>
+              <div className="justify-self-end whitespace-nowrap">
+                <span className="badge badge-ghost badge-sm min-w-14">{price(m.price_output_tokens)}</span>
+              </div>
+            </div>
+          ))
+        )}
+      </div>
     </div>
   );
 }

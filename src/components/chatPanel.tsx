@@ -4,7 +4,7 @@ import { useChat } from "@ai-sdk/react";
 import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 
-import { routeModel } from "@/lib/router";
+import { routeModel } from "@/lib/brute_router";
 import { RouterUIMessage } from "@/lib/types";
 import { useRouterStore } from "@/store/router";
 // flatten AI SDK UIMessage parts → text
@@ -77,7 +77,9 @@ export default function ChatPanel() {
                 const isUser = m.role === "user";
 
                 // Look for a metadata part like: { type: "data-llmmodel", data: { name: "GPT-4.1" } }
-                const assistantLabel = m.parts.find(part => part.type === "data-llmmodel")?.data.name;
+                const assistantLabel = m.parts.find(
+                  part => part.type === "data-llmmodel"
+                )?.data.name;
 
                 return (
                   <div

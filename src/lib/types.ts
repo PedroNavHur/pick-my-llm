@@ -8,5 +8,9 @@ export type RouterUIMessage = UIMessage<
       name: string;
       provider: string;
     };
+    usage: {
+      inputTokens: number;
+      outputTokens: number;
+    };
   } // data parts type
 >;

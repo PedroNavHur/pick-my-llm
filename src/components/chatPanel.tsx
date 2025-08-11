@@ -21,6 +21,8 @@ export default function ChatPanel() {
   // Zustand: read weights, setter for top models
   const weights = useRouterStore(s => s.weights);
   const setTopModels = useRouterStore(s => s.setTopModels);
+  const topModels = useRouterStore(s => s.topModels);
+  const currModel = topModels[0];
   const preference = useRouterStore(s => s.userPreference);
 
   const listRef = useRef<HTMLDivElement>(null);
@@ -67,6 +69,13 @@ export default function ChatPanel() {
     }
   }
 
+  const money8 = new Intl.NumberFormat(undefined, {
+    style: "currency",
+    currency: "USD",
+    minimumFractionDigits: 8,
+    maximumFractionDigits: 8,
+  });
+
   return (
     <div className="card bg-base-300 shadow-md mx-auto w-full max-w-2xl h-[75vh] overflow-hidden">
       <div className="flex h-full flex-col">
@@ -95,6 +104,19 @@ export default function ChatPanel() {
                   part => part.type === "data-llmmodel"
                 )?.data.name;
 
+                const inputTokens =
+                  m.parts.find(part => part.type === "data-usage")?.data
+                    .inputTokens ?? 0;
+
+                const outPutTokens =
+                  m.parts.find(part => part.type === "data-usage")?.data
+                    .outputTokens ?? 0;
+
+                const cost =
+                  (inputTokens * currModel?.price_input_tokens +
+                    outPutTokens * currModel?.price_output_tokens) /
+                  1_000_000;
+
                 return (
                   <div
                     key={m.id}
@@ -108,6 +130,20 @@ export default function ChatPanel() {
                     {/* Bubble */}
                     <div className="chat-bubble chat-bubble-neutral text-sm max-w-[90%] whitespace-pre-wrap">
                       {asText(m.parts)}
+
+                      {!isUser && outPutTokens ? (
+                        <div className="mt-1 flex w-full justify-end items-end gap-2">
+                          <span className="badge badge-soft badge-xs">
+                            Input: {inputTokens ?? 0}
+                          </span>
+                          <span className="badge badge-soft badge-xs">
+                            Output: {outPutTokens ?? 0}
+                          </span>
+                          <span className="badge badge-soft badge-xs">
+                            Cost: {money8.format(cost)}
+                          </span>
+                        </div>
+                      ) : null}
                     </div>
                   </div>
                 );

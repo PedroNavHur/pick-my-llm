@@ -80,9 +80,7 @@ function modelSpeed(m: ModelRow) {
 
 // --- build a scaler on the 3:1 blended $/1M ---
 const sPrice3to1 = mkScaler(
-  MODELS.map(
-    m => 0.75 * m.price_input_tokens + 0.25 * m.price_output_tokens
-  ),
+  MODELS.map(m => 0.75 * m.price_input_tokens + 0.25 * m.price_output_tokens),
   /* invert */ true // cheaper → larger score
 );
 

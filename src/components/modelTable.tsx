@@ -68,6 +68,7 @@ export default function ModelTable() {
 
   return (
     <div className="w-full py-4">
+      <p className="text-md p-2 font-bold">Recommended Models</p>
       {/* header */}
       <div
         className={`px-3 pb-2 uppercase tracking-wide text-base-content/60 text-xs ${COLS}`}
@@ -131,6 +132,9 @@ export default function ModelTable() {
           ))
         )}
       </div>
+      <p className="text-xs p-2 font-extralight text-base-content/60">
+        *For now we only support Google, OpenAI and Anthropic models
+      </p>
     </div>
   );
 }

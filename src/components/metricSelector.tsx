@@ -43,7 +43,9 @@ export default function MetricSelector() {
 
   return (
     <div className="flex flex-col justify-center space-y-4">
-      <p className="text-md px-2 font-bold">What do you prioritize?</p>
+      <p className="text-md px-2 font-bold">
+        What do you want to optimize for?
+      </p>
       <div className="flex space-x-4">
         {cards.map(card => {
           const isActive = card.pref === pref;
@@ -56,15 +58,20 @@ export default function MetricSelector() {
               aria-pressed={isActive}
               onClick={() => setPref(card.pref)}
               className={`
-                card cursor-pointer border-2 flex-1 p-2 flex flex-col items-center text-base-content
-                ${isActive ? "border-primary-content" : "border-base-300"}
-                shadow-sm transition
+                card cursor-pointer flex-1 p-2 flex flex-col items-center text-base-content
+                ${isActive ? "bg-base-300" : "bg-base-200"}
+                shadow-md transition
               `}
             >
-              <p className="text-sm font-medium mb-2">{card.label}</p>
+              <p
+                className={`text-sm my-2
+                ${isActive ? "font-bold" : "font-normal"}`}
+              >
+                {card.label}
+              </p>
               <Icon
                 className={`w-6 h-6 mb-2 transition-colors
-                  ${isActive ? "text-primary-content" : "text-base-content"}
+                  ${isActive ? "text-neutral" : "text-base-content"}
                 `}
               />
             </button>

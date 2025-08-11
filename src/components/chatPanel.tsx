@@ -129,11 +129,11 @@ export default function ChatPanel() {
                 }
               }}
               placeholder="Type your prompt… (Shift+Enter for newline)"
-              className="textarea textarea-bordered join-item w-full min-h-[48px] max-h-40"
+              className="textarea textarea-bordered join-item w-full h-20"
             />
             <button
               type="submit"
-              className="btn btn-primary join-item"
+              className="btn btn-neutral join-item h-20 "
               disabled={!input.trim()}
             >
               Send

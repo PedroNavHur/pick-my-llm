@@ -64,7 +64,11 @@ const COLS =
 
 export default function ModelTable() {
   const topModels = useRouterStore(s => s.topModels);
+  const preference = useRouterStore(s => s.userPreference); // "intelligence" | "speed" | "price"
   const rows = useMemo(() => topModels ?? [], [topModels]);
+
+  const badgeCls = (highlight: boolean) =>
+    `badge badge-sm ${highlight ? "badge-neutral" : "badge-ghost"}`;
 
   return (
     <div className="w-full py-4">
@@ -87,49 +91,55 @@ export default function ModelTable() {
             No models yet. Ask something in the chat to see recommendations.
           </div>
         ) : (
-          rows.map((m: ScoredModel) => (
-            <div
-              key={m.slug}
-              className={`w-full ${COLS} rounded-full bg-base-100 first:bg-base-300 px-2 py-1 text-left shadow-sm`}
-            >
-              {/* model + provider */}
-              <div className="flex items-center gap-2 min-w-0">
-                <ProviderBadge provider={m.provider} />
-                <div className="min-w-0">
-                  <div className="truncate font-medium text-xs">{m.name}</div>
-                  <div className="truncate text-xs text-base-content/60">
-                    {m.provider}
+          rows.map((m: ScoredModel, i) => {
+            const isFirst = i === 0;
+            const hlIntel = isFirst && preference === "intelligence";
+            const hlSpeed = isFirst && preference === "speed";
+            const hlPrice = isFirst && preference === "price";
+            return (
+              <div
+                key={m.slug}
+                className={`w-full ${COLS} rounded-full bg-base-100 first:bg-base-300 px-2 py-1 text-left shadow-sm`}
+              >
+                {/* model + provider */}
+                <div className="flex items-center gap-2 min-w-0">
+                  <ProviderBadge provider={m.provider} />
+                  <div className="min-w-0">
+                    <div className="truncate font-medium text-xs">{m.name}</div>
+                    <div className="truncate text-xs text-base-content/60">
+                      {m.provider}
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              {/* intelligence */}
-              <div className="justify-self-end whitespace-nowrap">
-                <span className="badge badge-neutral badge-sm min-w-11">
-                  {to10(m.breakdown.intel)}
-                </span>
-              </div>
+                {/* intelligence */}
+                <div className="justify-self-end whitespace-nowrap">
+                  <span className={`${badgeCls(hlIntel)} min-w-11`}>
+                    {to10(m.breakdown.intel)}
+                  </span>
+                </div>
 
-              {/* speed (raw TPS) */}
-              <div className="justify-self-end whitespace-nowrap">
-                <span className="badge badge-ghost badge-sm min-w-14">
-                  {tps(m.median_output_tokens_per_second)}
-                </span>
-              </div>
+                {/* speed (raw TPS) */}
+                <div className="justify-self-end whitespace-nowrap">
+                  <span className={`${badgeCls(hlSpeed)} min-w-14`}>
+                    {tps(m.median_output_tokens_per_second)}
+                  </span>
+                </div>
 
-              {/* prices */}
-              <div className="justify-self-end whitespace-nowrap">
-                <span className="badge badge-neutral badge-sm min-w-14">
-                  {price(m.price_input_tokens)}
-                </span>
+                {/* prices */}
+                <div className="justify-self-end whitespace-nowrap">
+                  <span className={`${badgeCls(hlPrice)} min-w-14`}>
+                    {price(m.price_input_tokens)}
+                  </span>
+                </div>
+                <div className="justify-self-end whitespace-nowrap">
+                  <span className={`${badgeCls(hlPrice)} min-w-14`}>
+                    {price(m.price_output_tokens)}
+                  </span>
+                </div>
               </div>
-              <div className="justify-self-end whitespace-nowrap">
-                <span className="badge badge-ghost badge-sm min-w-14">
-                  {price(m.price_output_tokens)}
-                </span>
-              </div>
-            </div>
-          ))
+            );
+          })
         )}
       </div>
       <p className="text-xs p-2 font-extralight text-base-content/60">

@@ -77,7 +77,7 @@ function normalizeWeights(w: Weights): Weights {
 }
 
 const INITIAL: Pick<RouterState, "weights" | "topModels" | "userPreference"> = {
-  weights: { intelligence: 0.3, speed: 0.2, price: 0.5 },
+  weights: { intelligence: 0.2, speed: 0.2, price: 0.6 },
   userPreference: "intelligence",
   topModels: [],
 };

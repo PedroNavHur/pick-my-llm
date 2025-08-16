@@ -14,7 +14,7 @@ const asText = (parts: { type: string; text?: string }[]) =>
 
 export default function ChatPanel() {
   const [input, setInput] = useState("");
-  const { messages, sendMessage } = useChat({
+  const { messages, setMessages, sendMessage } = useChat({
     onError: e => toast.error(e.message),
   });
 
@@ -43,10 +43,6 @@ export default function ChatPanel() {
       const { task, taskScores, difficulty, difficultyScore } =
         await classifyPrompt(prompt);
 
-      // optional: if you have UI sliders / a dropdown
-      // const baseWeights = { intelligence: 0.5, speed: 0.25, price: 0.25 };
-      // const userPreference: UserPreference = selectedPref; // "intelligence" | "speed" | "price"
-
       // 2) rank models with the new picker
       const { alternatives } = pickModels({
         task,
@@ -54,14 +50,20 @@ export default function ChatPanel() {
         difficulty,
         difficultyScore,
         userPreference: preference,
-        baseWeights: weights,
+        baseWeights: {
+          intelligence: 0.075,
+          speed: 0.025,
+          price: 0.9,
+        },
       });
 
       // 3) push top-5 into Zustand
       setTopModels(alternatives);
 
+      setMessages([]); // clear chat history for new conversation
+
       // 4) send the message to the chat
-      await sendMessage({ text: prompt });
+      await sendMessage({ text: prompt, metadata: { preference } });
       setInput("");
     } catch (err) {
       console.error("Router error:", err);

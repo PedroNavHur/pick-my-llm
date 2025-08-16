@@ -88,6 +88,17 @@
     "median_output_tokens_per_second": 130.142
   },
   {
+    "name": "GPT-5 nano",
+    "slug": "gpt-5-nano",
+    "provider": "openai",
+    "artificial_analysis_intelligence_index": 53.8,
+    "artificial_analysis_coding_index": 47.1,
+    "artificial_analysis_math_index": 61.4,
+    "price_input_tokens": 0.05,
+    "price_output_tokens": 0.4,
+    "median_output_tokens_per_second": 291.691
+  },
+  {
     "name": "GPT-4.1 mini",
     "slug": "gpt-4-1-mini",
     "provider": "openai",
@@ -119,6 +130,17 @@
     "price_input_tokens": 1.25,
     "price_output_tokens": 10,
     "median_output_tokens_per_second": 113.815
+  },
+  {
+    "name": "GPT-5 mini",
+    "slug": "gpt-5-mini",
+    "provider": "openai",
+    "artificial_analysis_intelligence_index": 63.7,
+    "artificial_analysis_coding_index": 54.9,
+    "artificial_analysis_math_index": 90.9,
+    "price_input_tokens": 0.25,
+    "price_output_tokens": 2,
+    "median_output_tokens_per_second": 149.682
   },
   {
     "name": "GPT-5 (high)",

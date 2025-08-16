@@ -106,7 +106,7 @@ export function pickModels(args: {
     difficultyScore,
     userPreference,
     baseWeights,
-    preferenceBoost = 0.5,
+    preferenceBoost = 0.75,
   } = args;
 
   // Start with base weights
@@ -115,7 +115,8 @@ export function pickModels(args: {
   let wp = baseWeights.price;
 
   // Nudge for difficulty (hard ⇒ a bit more intelligence)
-  const diffBoost = 0.2 * Math.max(0, Math.min(1, difficultyScore)); // up to +0.2 to intelligence
+  const diffBoost =
+    difficultyScore < 0.5 ? 0 : (0.2 * (difficultyScore - 0.5)) / 0.5; // at most +0.2 when clearly hard
   wi += diffBoost;
   // remove from speed/price proportionally
   const rem = diffBoost;
@@ -131,6 +132,7 @@ export function pickModels(args: {
   // Normalize to sum 1
   const sum = Math.max(1e-9, wi + ws + wp);
   const w = { intelligence: wi / sum, speed: ws / sum, price: wp / sum };
+  console.log(w);
 
   // Score models
   const scored = MODELS.map<ScoredModel>(m => {

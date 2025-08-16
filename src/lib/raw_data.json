@@ -355,7 +355,7 @@
       "evaluations": {
         "artificial_analysis_intelligence_index": 53.8,
         "artificial_analysis_coding_index": 47.1,
-        "artificial_analysis_math_index": null,
+        "artificial_analysis_math_index": 61.4,
         "mmlu_pro": 0.772,
         "gpqa": 0.67,
         "hle": 0.076,
@@ -590,7 +590,7 @@
       "evaluations": {
         "artificial_analysis_intelligence_index": 63.7,
         "artificial_analysis_coding_index": 54.9,
-        "artificial_analysis_math_index": null,
+        "artificial_analysis_math_index": 90.9,
         "mmlu_pro": 0.828,
         "gpqa": 0.803,
         "hle": 0.146,

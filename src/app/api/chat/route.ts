@@ -8,11 +8,22 @@ import {
 import { RouterUIMessage } from "@/lib/types";
 import { Ratelimit } from "@upstash/ratelimit";
 import { kv } from "@vercel/kv";
+import { semanticRoute } from "@/lib/semantic_router";
+import type { SemanticRouting } from "@/lib/semantic_router";
+import { pickModels } from "@/lib/pickModels";
 
 export const maxDuration = 30;
 
 const RATE_LIMIT_REQUESTS = 2;
 const RATE_LIMIT_SECONDS = "10s";
+
+function partsToText(parts: RouterUIMessage["parts"]): string {
+  // Concatenate all text parts (ignore data parts)
+  return parts
+    .map(p => (p.type === "text" ? (p.text ?? "") : ""))
+    .join("")
+    .trim();
+}
 
 export async function POST(req: Request) {
   // Rate limit
@@ -39,6 +50,26 @@ export async function POST(req: Request) {
 
   // --- Streaming logic ---
   const { messages } = await req.json();
+  const lastUserMessage = [...messages].reverse().find(m => m.role === "user");
+  const preference = lastUserMessage?.metadata?.preference ?? "price";
+  const fullPrompt = partsToText(lastUserMessage.parts);
+
+  // Classify Prompt
+  const result: SemanticRouting = await semanticRoute(fullPrompt);
+
+  const { primary } = pickModels({
+    task: result.task,
+    taskScores: result.taskScores,
+    difficulty: result.difficulty,
+    difficultyScore: result.difficultyScore,
+    userPreference: preference,
+    baseWeights: {
+      intelligence: 0.075,
+      speed: 0.025,
+      price: 0.9,
+    },
+  });
+  console.log(preference, result, primary);
 
   const stream = createUIMessageStream<RouterUIMessage>({
     execute: ({ writer }) => {
@@ -46,7 +77,7 @@ export async function POST(req: Request) {
       writer.write({
         type: "data-llmmodel",
         id: "llm-model-1",
-        data: { name: "GPT-5 Nano", provider: "OpenAI" },
+        data: { name: primary.name, provider: primary.provider },
       });
 
       // 2) Stream the model and capture usage when it finishes
